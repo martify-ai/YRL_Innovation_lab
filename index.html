@@ -829,7 +829,7 @@
             <label class="radio-pill"><input type="radio" name="laptop" value="No"> No</label>
           </div>
         </div>
-        <div class="field full"><label for="why">Why do you want to join YRL & the bootcamp?</label><textarea id="why" placeholder="Tell us in a few sentences..."></textarea></div>
+        <div class="field full"><label for="why-join">Why do you want to join YRL & the bootcamp?</label><textarea id="why-join" placeholder="Tell us in a few sentences..."></textarea></div>
         <div class="field full"><label for="source">How did you hear about us?</label><input id="source" type="text" placeholder="Friend, social media, church, etc."></div>
       </div>
 
@@ -839,7 +839,7 @@
       </label>
 
       <button type="button" class="btn btn-gold" id="reg-btn" onclick="submitRegistration()">Join YRL & register for the bootcamp</button>
-      <p class="reg-note" id="reg-error" style="color:#c0392b;display:none;"></p>
+      <p id="reg-error" style="display:none;color:#c0392b;font-size:0.9rem;font-weight:600;margin-top:16px;text-align:center;padding:12px;background:rgba(192,57,43,0.08);border-left:3px solid #c0392b;"></p>
       <p class="reg-note">Future programs will take just one click — we'll already have your details on file.</p>
     </div>
 
@@ -849,7 +849,7 @@
       <h3 id="success-name">Welcome aboard!</h3>
       <p>You just took one of the boldest steps you could take for your future. Not everyone acts — but you did. That already sets you apart.</p>
       <p style="margin-top:10px;">Your registration is confirmed and a congratulatory email is on its way to your inbox. Your next step is simple — join the WhatsApp community, introduce yourself, and get ready for the AI Possibilities Bootcamp.</p>
-      <a href="https://chat.whatsapp.com/Gkkxp5Fd7okJnQhjM2rd2t" target="_blank" class="wa-btn">
+      <a href="https://chat.whatsapp.com/Gkkxp5Fd7okJnQhjM2rd2t" target="_blank" rel="noopener noreferrer" class="wa-btn">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.526 5.845L.057 23.447a.5.5 0 0 0 .612.612l5.683-1.488A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 0 1-4.988-1.37l-.358-.213-3.714.972.99-3.616-.233-.372A9.778 9.778 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         Join the WhatsApp Community
       </a>
@@ -994,7 +994,7 @@
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYqnaLh0OQF66k5z8uJvb71Fug4n6tIQ1ItiWsCH-dKmbxMKfl6imjXqZXXE3sDJb5/exec";
 
-  // ── FAQ accordion ──
+  // ── FAQ accordion ──────────────────────────────────────────────────────────
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.parentElement;
@@ -1004,7 +1004,7 @@
     });
   });
 
-  // ── Tracks accordion ──
+  // ── Tracks accordion ───────────────────────────────────────────────────────
   document.querySelectorAll('.track-head').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.parentElement;
@@ -1014,77 +1014,138 @@
     });
   });
 
-  // ── Form submission ──
+  // ── Helpers ────────────────────────────────────────────────────────────────
   function showError(msg) {
     const el = document.getElementById('reg-error');
-    el.textContent = msg;
+    el.textContent = '⚠ ' + msg;
     el.style.display = 'block';
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
+
   function hideError() {
-    document.getElementById('reg-error').style.display = 'none';
+    const el = document.getElementById('reg-error');
+    el.textContent = '';
+    el.style.display = 'none';
   }
 
+  function setButtonState(loading) {
+    const btn = document.getElementById('reg-btn');
+    if (loading) {
+      btn.dataset.originalText = btn.textContent;
+      btn.textContent = 'Sending your registration...';
+      btn.disabled = true;
+      btn.style.opacity = '0.65';
+      btn.style.cursor = 'not-allowed';
+    } else {
+      btn.textContent = btn.dataset.originalText || 'Join YRL & register for the bootcamp';
+      btn.disabled = false;
+      btn.style.opacity = '';
+      btn.style.cursor = '';
+    }
+  }
+
+  // ── Form submission ────────────────────────────────────────────────────────
   function submitRegistration() {
     hideError();
 
-    // Gather values
-    const fullName   = document.getElementById('fname').value.trim();
-    const email      = document.getElementById('email').value.trim();
-    const whatsapp   = document.getElementById('whatsapp').value.trim();
-    const country    = document.getElementById('country').value.trim();
-    const occupation = document.getElementById('occupation').value.trim();
-    const age        = document.getElementById('age').value;
-    const whyJoin    = document.getElementById('why').value.trim();
-    const howHeard   = document.getElementById('source').value.trim();
-    const agreed     = document.getElementById('agree').checked;
+    // Safe field reader — never crashes even if an ID is missing or wrong
+    const getVal = (id) => {
+      const el = document.getElementById(id);
+      if (!el) { console.error('YRL form: element not found —', id); return ''; }
+      return (el.value ?? '').toString().trim();
+    };
+    const isChecked = (id) => {
+      const el = document.getElementById(id);
+      return el ? el.checked : false;
+    };
+
+    // --- Collect all field values ---
+    const fullName   = getVal('fname');
+    const email      = getVal('email');
+    const whatsapp   = getVal('whatsapp');
+    const country    = getVal('country');
+    const occupation = getVal('occupation');
+    const age        = getVal('age');
+    const whyJoin    = getVal('why-join');
+    const howHeard   = getVal('source');
+    const agreed     = isChecked('agree');
 
     const tracks = [...document.querySelectorAll('#tracks-check input:checked')]
                     .map(cb => cb.value).join(', ');
 
-    const usedAI  = document.querySelector('input[name="ai-used"]:checked')?.value || 'Not answered';
-    const hasLaptop = document.querySelector('input[name="laptop"]:checked')?.value || 'Not answered';
+    const usedAI    = document.querySelector('input[name="ai-used"]:checked')?.value || 'Not answered';
+    const hasLaptop = document.querySelector('input[name="laptop"]:checked')?.value  || 'Not answered';
 
-    // ── Validation ──
-    if (!fullName)   return showError('Please enter your full name.');
+    // --- Validate required fields ---
+    if (!fullName)
+      return showError('Please enter your full name.');
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-                     return showError('Please enter a valid email address.');
-    if (!whatsapp)   return showError('Please enter your WhatsApp number.');
-    if (!country)    return showError('Please enter your country.');
-    if (!tracks)     return showError('Please select at least one innovation track.');
-    if (!agreed)     return showError('Please agree to the community guidelines to continue.');
+      return showError('Please enter a valid email address.');
+    if (!whatsapp)
+      return showError('Please enter your WhatsApp number.');
+    if (!country)
+      return showError('Please enter your country.');
+    if (!tracks)
+      return showError('Please select at least one innovation track you are interested in.');
+    if (!agreed)
+      return showError('Please tick the checkbox to agree to the community guidelines before continuing.');
 
-    // ── Show loading state ──
-    const btn = document.getElementById('reg-btn');
-    btn.textContent = 'Sending your registration...';
-    btn.classList.add('submitting');
+    // --- Lock button ---
+    setButtonState(true);
 
-    const payload = { fullName, email, whatsapp, country, occupation, age, tracks, usedAI, hasLaptop, whyJoin, howHeard };
+    // --- Build payload ---
+    // BUG FIX: Use text/plain content-type — this is a CORS-safelisted type,
+    // meaning no preflight OPTIONS request is triggered. Google Apps Script
+    // receives the raw JSON string via e.postData.contents and parses it.
+    // URLSearchParams (form-encoded) was dropping on the Apps Script redirect.
+    const payload = {
+      fullName, email, whatsapp, country,
+      occupation, age, tracks, usedAI,
+      hasLaptop, whyJoin, howHeard
+    };
+
+    // --- 15-second timeout guard ---
+    // Without this, a hanging request locks the button forever
+    const controller = new AbortController();
+    const timeoutId  = setTimeout(() => controller.abort(), 15000);
 
     fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      method:  'POST',
+      mode:    'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body:    JSON.stringify(payload),
+      signal:  controller.signal
     })
     .then(() => {
-      // no-cors means we can't read the response — but if fetch didn't throw, it went through
+      clearTimeout(timeoutId);
+      // no-cors always returns an opaque response — we can't read it.
+      // If we reach .then(), the request was sent successfully.
       showSuccess(fullName);
     })
-    .catch(() => {
-      btn.textContent = 'Join YRL & register for the bootcamp';
-      btn.classList.remove('submitting');
-      showError('Something went wrong. Please check your connection and try again.');
+    .catch(err => {
+      clearTimeout(timeoutId);
+      setButtonState(false);
+      if (err.name === 'AbortError') {
+        showError('Request timed out. Please check your internet connection and try again.');
+      } else {
+        showError('Something went wrong sending your registration. Please check your connection and try again.');
+      }
     });
   }
 
+  // ── Success screen ─────────────────────────────────────────────────────────
   function showSuccess(fullName) {
     const firstName = fullName.split(' ')[0];
-    document.getElementById('reg-card').style.display = 'none';
-    const screen = document.getElementById('success-screen');
+
+    // Hide the form card
+    const card = document.getElementById('reg-card');
+    card.style.display = 'none';
+
+    // Update and reveal the success screen
     document.getElementById('success-name').textContent = 'Welcome, ' + firstName + '! 🎉';
+    const screen = document.getElementById('success-screen');
     screen.classList.add('visible');
-    screen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    screen.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 </script>
 
