@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses — YRL Innovation Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14130F;--paper:#FAFAF6;--paper-dim:#F0EDE2;
+  --gold:#C8932B;--gold-deep:#9C6E18;
+  --green:#2D7A4F;
+  --line:rgba(20,19,15,0.12);--line-strong:rgba(20,19,15,0.35);
+  --serif:'Fraunces',serif;--sans:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.5;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+
+/* ── NAV ── */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(250,250,246,0.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:600;font-size:1.1rem;}
+.brand .mark{width:34px;height:34px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.62rem;font-weight:500;position:relative;}
+.brand .mark::after{content:"";position:absolute;width:5px;height:5px;background:var(--gold);border-radius:50%;top:-1.5px;right:-1.5px;}
+.back-link{font-family:var(--mono);font-size:0.78rem;border:1px solid var(--line-strong);padding:9px 16px;transition:background .15s,color .15s;}
+.back-link:hover{background:var(--ink);color:var(--paper);}
+
+/* ── HERO ── */
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--line);}
+.eyebrow{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-deep);display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-deep);}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:-0.02em;line-height:1.06;margin-bottom:18px;}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--gold-deep);}
+.hero p{font-size:1.05rem;opacity:0.7;max-width:54ch;}
+.hero-strip{display:flex;gap:28px;margin-top:32px;flex-wrap:wrap;}
+.hs{font-family:var(--mono);font-size:0.7rem;color:var(--gold-deep);border:1px solid rgba(200,147,43,0.3);padding:8px 14px;}
+
+/* ── SUBSCRIBER ── */
+.subscriber{background:var(--ink);padding:52px 0;}
+.subscriber .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.subscriber h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--paper);line-height:1.2;}
+.subscriber h2 em{font-style:italic;color:var(--gold);font-weight:400;}
+.subscriber p{color:rgba(250,250,246,0.55);font-size:0.9rem;margin-top:10px;}
+.sub-row{display:flex;gap:10px;}
+.sub-input{flex:1;background:rgba(250,250,246,0.08);border:1px solid rgba(250,250,246,0.2);color:var(--paper);padding:12px 14px;font-family:var(--sans);font-size:0.9rem;}
+.sub-input:focus{outline:none;border-color:var(--gold);}
+.sub-input::placeholder{color:rgba(250,250,246,0.3);}
+.sub-btn{background:var(--gold);color:var(--ink);border:none;padding:12px 22px;font-family:var(--sans);font-weight:700;font-size:0.9rem;cursor:pointer;white-space:nowrap;transition:background .15s;}
+.sub-btn:hover{background:var(--gold-deep);color:var(--paper);}
+.sub-ok{display:none;background:rgba(200,147,43,0.15);border:1px solid rgba(200,147,43,0.35);padding:14px;color:var(--gold);font-family:var(--mono);font-size:0.78rem;}
+
+/* ── FREE / PAID SUMMARY STRIP ── */
+.tier-strip{background:var(--paper-dim);border-bottom:1px solid var(--line);padding:22px 0;}
+.tier-strip .wrap{display:flex;align-items:center;gap:32px;flex-wrap:wrap;}
+.tier-label{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.5;}
+.tier-item{display:flex;align-items:center;gap:8px;font-size:0.85rem;}
+.tier-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.tier-dot.free{background:var(--green);}
+.tier-dot.paid{background:var(--gold);}
+
+/* ── COURSE CARDS ── */
+.courses-section{padding:0;}
+.course-row{
+  display:grid;grid-template-columns:300px 1fr;
+  border-bottom:1px solid var(--line);
+  transition:background .18s;
+}
+.course-row:hover{background:rgba(200,147,43,0.02);}
+.course-info{
+  padding:40px 32px;
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:0;
+  position:sticky;top:72px;align-self:start;
+  max-height:calc(100vh - 72px);
+  overflow-y:auto;
+  scrollbar-width:none;
+}
+.course-info::-webkit-scrollbar{display:none;}
+.ci-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.course-num{font-family:var(--mono);font-size:0.68rem;color:rgba(20,19,15,0.35);}
+.badge-paid{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;background:rgba(200,147,43,0.12);color:var(--gold-deep);border:1px solid rgba(200,147,43,0.35);padding:4px 10px;}
+.badge-free{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;background:rgba(45,122,79,0.1);color:var(--green);border:1px solid rgba(45,122,79,0.3);padding:4px 10px;}
+.course-name{font-family:var(--serif);font-weight:700;font-size:1.35rem;line-height:1.15;margin-bottom:14px;}
+.course-meta{display:flex;flex-direction:column;gap:5px;margin-bottom:16px;}
+.course-meta span{font-size:0.78rem;opacity:0.6;font-family:var(--mono);}
+.course-desc{font-size:0.84rem;opacity:0.68;line-height:1.6;margin-bottom:20px;}
+.price-block{margin-bottom:18px;}
+.price-paid{font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--gold-deep);letter-spacing:-0.01em;}
+.price-free{font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--green);}
+.mentorship-price{font-family:var(--mono);font-size:0.68rem;color:rgba(20,19,15,0.5);margin-top:4px;}
+.cta-block{display:flex;flex-direction:column;gap:8px;margin-top:auto;}
+.btn-enroll{display:block;text-align:center;padding:12px 16px;font-family:var(--sans);font-weight:600;font-size:0.82rem;transition:background .15s,color .15s,transform .15s;}
+.btn-enroll:hover{transform:translateY(-2px);}
+.btn-paid{background:var(--ink);color:var(--paper);}
+.btn-paid:hover{background:var(--gold);color:var(--ink);}
+.btn-free{border:1px solid var(--green);color:var(--green);}
+.btn-free:hover{background:var(--green);color:var(--paper);}
+.btn-mentorship{background:var(--gold);color:var(--ink);}
+.btn-mentorship:hover{background:var(--gold-deep);color:var(--paper);}
+
+/* ── CURRICULUM ── */
+.course-curriculum{padding:40px 40px;}
+.curriculum-label{font-family:var(--mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold-deep);margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.curriculum-label::after{content:"";flex:1;height:1px;background:rgba(200,147,43,0.2);}
+.week-track{position:relative;padding-left:24px;border-left:2px solid var(--line);display:flex;flex-direction:column;gap:0;}
+.week-item{position:relative;padding:0 0 28px 24px;}
+.week-item:last-child{padding-bottom:0;}
+.week-dot{position:absolute;left:-9px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--line);transition:border-color .2s;}
+.course-row:hover .week-dot{border-color:var(--gold);}
+.week-body{display:flex;flex-direction:column;gap:8px;}
+.week-header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.week-label{font-family:var(--mono);font-size:0.65rem;color:var(--gold-deep);letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;}
+.week-title{font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--ink);}
+.week-topics{list-style:none;display:flex;flex-direction:column;gap:4px;padding-left:2px;}
+.week-topics li{font-size:0.82rem;opacity:0.65;padding-left:14px;position:relative;line-height:1.45;}
+.week-topics li::before{content:"·";position:absolute;left:0;color:var(--gold);font-weight:700;}
+
+/* ── BENEFITS ── */
+.benefits{background:var(--ink);padding:72px 0;}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(250,250,246,0.08);margin-top:36px;}
+.benefit-card{background:var(--ink);padding:28px 24px;border:1px solid rgba(250,250,246,0.06);}
+.benefit-tag{font-family:var(--mono);font-size:0.58rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;display:block;}
+.benefit-card h4{font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--paper);margin-bottom:8px;}
+.benefit-card p{font-size:0.82rem;color:rgba(250,250,246,0.5);line-height:1.55;}
+
+/* ── PAID COMMUNITY ── */
+.paid-community{padding:72px 0;border-top:1px solid var(--line);}
+.pc-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.pc-inner h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-0.01em;margin-bottom:14px;}
+.pc-inner p{opacity:0.68;font-size:0.95rem;line-height:1.65;margin-bottom:12px;}
+.pc-list{border:1px solid var(--line);}
+.pc-item{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:flex-start;}
+.pc-item:last-child{border-bottom:none;}
+.pc-arrow{color:var(--gold);font-family:var(--mono);font-size:0.75rem;flex-shrink:0;margin-top:2px;}
+.pc-item h5{font-weight:600;font-size:0.88rem;margin-bottom:2px;}
+.pc-item p{font-size:0.78rem;opacity:0.55;margin:0;}
+
+/* ── CERT ── */
+.cert-section{background:var(--paper-dim);border-top:1px solid var(--line);padding:64px 0;}
+.cert-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.cert-inner h2{font-family:var(--serif);font-weight:700;font-size:1.8rem;margin-bottom:12px;letter-spacing:-0.01em;}
+.cert-inner p{opacity:0.68;font-size:0.92rem;margin-bottom:20px;}
+.cert-table{border:1px solid var(--line);}
+.cert-row{display:flex;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line);font-size:0.88rem;}
+.cert-row:last-child{border-bottom:none;}
+.cert-row span{opacity:0.5;font-family:var(--mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;}
+.cert-row strong{font-weight:600;}
+.gold{color:var(--gold-deep);}
+
+/* ── FOOTER ── */
+footer{padding:36px 0;border-top:1px solid var(--line);}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.fbrand{font-family:var(--serif);font-weight:600;}
+.ftag{font-size:0.75rem;opacity:0.45;font-family:var(--mono);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .course-row{grid-template-columns:1fr;}
+  .course-info{position:relative;top:0;max-height:none;border-right:none;border-bottom:1px solid var(--line);}
+  .subscriber .wrap{grid-template-columns:1fr;}
+  .benefits-grid{grid-template-columns:1fr 1fr;}
+  .pc-inner,.cert-inner{grid-template-columns:1fr;}
+}
+@media(max-width:560px){
+  .benefits-grid{grid-template-columns:1fr;}
+  .sub-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="brand"><span class="mark">YRL</span> YRL Innovation Lab</a>
+    <a href="index.html" class="back-link">← Back to Main Site</a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">All Courses</div>
+    <h1>Learn by doing.<br><em>Build what matters.</em></h1>
+    <p>We find the best free learning resources on the internet — YouTube, documentation, articles — and organise them into a structured, week-by-week path. You follow the path. We walk beside you through mentorship, accountability, and community. Two tracks are free to explore. All tracks include a commitment fee for mentorship access.</p>
+    <div class="hero-strip">
+      <span class="hs">12 Courses</span>
+      <span class="hs">2 Free Courses</span>
+      <span class="hs">10 Paid Courses</span>
+      <span class="hs">Mentorship Included</span>
+      <span class="hs">Job Support</span>
+      <span class="hs">Certificates</span>
+    </div>
+  </div>
+</section>
+
+<section class="subscriber" id="subscribe">
+  <div class="wrap">
+    <div>
+      <h2>Be first when a course <em>opens for enrollment.</em></h2>
+      <p>Learning paths are being structured now. Drop your email and we will notify you the moment a path opens — before it is announced anywhere else.</p>
+    </div>
+    <div>
+      <div id="sub-form">
+        <div class="sub-row">
+          <input class="sub-input" id="sub-email" type="email" placeholder="Your email address">
+          <button class="sub-btn" onclick="submitSubscriber()">Notify Me →</button>
+        </div>
+      </div>
+      <div class="sub-ok" id="sub-ok">✓ You are on the list. We will email you the moment any course opens.</div>
+    </div>
+  </div>
+</section>
+
+<div class="tier-strip">
+  <div class="wrap">
+    <span class="tier-label">Course Types</span>
+    <div class="tier-item"><div class="tier-dot paid"></div><span>Structured Path — curated free resources + commitment fee for mentorship, accountability &amp; community</span></div>
+    <div class="tier-item"><div class="tier-dot free"></div><span>Free Course — curriculum free, pay only for mentorship & extras</span></div>
+  </div>
+</div>
+
+<section class="courses-section">
+
+      <div class="course-row" id="course-01">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">01</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦35,000</span>
+          </div>
+          <h3 class="course-name">Artificial Intelligence</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 Beginner → Advanced</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We curate the best free AI learning resources — YouTube tutorials, official documentation, and hands-on guides — and organise them into a clear week-by-week path. You follow the path; we walk with you through live mentorship and accountability to make sure you actually finish and apply what you learn.</p>
+          <div class="price-block">
+            <div class="price-paid">₦35,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Understanding AI</h5>
+            </div>
+            <ul class="week-topics"><li>What AI is and how it actually works</li>
+<li>Key tools: ChatGPT, Claude, Gemini, Copilot</li>
+<li>How AI learns from data — no jargon</li>
+<li>Your first live hands-on AI session</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">Prompt Engineering</h5>
+            </div>
+            <ul class="week-topics"><li>What a prompt is and why it is the most valuable AI skill</li>
+<li>The formula: Role + Task + Context + Format</li>
+<li>Strong vs weak prompts — live comparison</li>
+<li>Building your personal prompt library (20+ templates)</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">AI for Productivity & Research</h5>
+            </div>
+            <ul class="week-topics"><li>Using AI to manage email, research, and planning</li>
+<li>Summarizing documents and reports in seconds</li>
+<li>Building a personal AI productivity system</li>
+<li>Save 2–3 hours every day with AI</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">AI for Content & Visual Design</h5>
+            </div>
+            <ul class="week-topics"><li>Writing captions, blog posts, scripts, and emails with AI</li>
+<li>AI image generation: Canva AI, Midjourney, Leonardo AI</li>
+<li>Creating bulk content in minutes</li>
+<li>Making AI output sound like you</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">AI Automation & Agents</h5>
+            </div>
+            <ul class="week-topics"><li>What automation is and why it matters</li>
+<li>Intro to Zapier and Make</li>
+<li>AI agents and multi-step workflows</li>
+<li>Building your first automated business system</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">AI for Business & Career</h5>
+            </div>
+            <ul class="week-topics"><li>Real AI business use cases across industries</li>
+<li>AI product development fundamentals</li>
+<li>Future AI careers and opportunities</li>
+<li>Building an AI portfolio and getting hired</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-02">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">02</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦28,000</span>
+          </div>
+          <h3 class="course-name">Automation & No-Code</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 Beginner → Intermediate</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We pull together the best free automation tutorials and no-code guides from across the internet and organise them into a practical, step-by-step path. Our mentors check in weekly to make sure you are building real systems, not just watching videos.</p>
+          <div class="price-block">
+            <div class="price-paid">₦28,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Automation Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>What automation is and why it matters for business</li>
+<li>Triggers, actions, and how workflows connect</li>
+<li>The most important automation tools in 2026</li>
+<li>Your first automation built from scratch</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">Zapier Mastery</h5>
+            </div>
+            <ul class="week-topics"><li>Setting up and navigating Zapier</li>
+<li>Building multi-step Zaps</li>
+<li>Connecting apps without any code</li>
+<li>Real automations you can use immediately</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">Make (Advanced Automation)</h5>
+            </div>
+            <ul class="week-topics"><li>Make vs Zapier — when to use which</li>
+<li>Building complex automation scenarios</li>
+<li>Error handling and debugging workflows</li>
+<li>Cost-effective automation at scale</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">CRM, Email & WhatsApp Automation</h5>
+            </div>
+            <ul class="week-topics"><li>CRM automation for sales pipelines</li>
+<li>Email marketing automation flows</li>
+<li>WhatsApp Business automation</li>
+<li>Complete customer journey automation</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">No-Code Development</h5>
+            </div>
+            <ul class="week-topics"><li>No-code vs low-code — choosing the right approach</li>
+<li>Building apps with Glide, Bubble, or Webflow</li>
+<li>Creating internal business tools</li>
+<li>Connecting no-code apps with automation</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Building Complete Business Systems</h5>
+            </div>
+            <ul class="week-topics"><li>Designing an end-to-end automated business</li>
+<li>Real case study: building a complete system</li>
+<li>Testing, maintaining, and scaling automations</li>
+<li>Selling automation services as a freelancer</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-03">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">03</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦45,000</span>
+          </div>
+          <h3 class="course-name">Software Engineering</h3>
+          <div class="course-meta">
+            <span>⏱ 12 Weeks</span>
+            <span>📶 Beginner → Job-Ready</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We curate the best free programming resources — from freeCodeCamp and The Odin Project to official documentation — and structure them into a 12-week path with clear milestones. Our mentors guide you through every stage so you do not get stuck or give up.</p>
+          <div class="price-block">
+            <div class="price-paid">₦45,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1–2</span>
+              <h5 class="week-title">Programming Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>How computers and code work</li>
+<li>Python — the most beginner-friendly language</li>
+<li>Variables, functions, loops, and logic</li>
+<li>Writing your first real programs</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3–4</span>
+              <h5 class="week-title">Web Development Basics</h5>
+            </div>
+            <ul class="week-topics"><li>HTML — the structure of every website</li>
+<li>CSS — making things look good</li>
+<li>JavaScript — making things interactive</li>
+<li>Building your first live webpage</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5–6</span>
+              <h5 class="week-title">Backend Development</h5>
+            </div>
+            <ul class="week-topics"><li>How servers and APIs work</li>
+<li>Building APIs with Python (Flask or FastAPI)</li>
+<li>User authentication and sessions</li>
+<li>Connecting frontend and backend</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 7–8</span>
+              <h5 class="week-title">Databases & APIs</h5>
+            </div>
+            <ul class="week-topics"><li>SQL and relational databases</li>
+<li>Designing database schemas</li>
+<li>REST API design and best practices</li>
+<li>Integrating third-party APIs</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 9–10</span>
+              <h5 class="week-title">Cloud Deployment & DevOps</h5>
+            </div>
+            <ul class="week-topics"><li>Introduction to AWS and Google Cloud</li>
+<li>Deploying applications to the cloud</li>
+<li>Git, GitHub, and version control workflows</li>
+<li>CI/CD and automation pipelines</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 11–12</span>
+              <h5 class="week-title">Real Project & Portfolio</h5>
+            </div>
+            <ul class="week-topics"><li>Planning and scoping a real software project</li>
+<li>Building a full-stack application from scratch</li>
+<li>Code reviews, testing, and documentation</li>
+<li>Presenting your project and getting hired</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-04">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">04</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦40,000</span>
+          </div>
+          <h3 class="course-name">Web Development</h3>
+          <div class="course-meta">
+            <span>⏱ 8 Weeks</span>
+            <span>📶 Beginner → Professional</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We organise the best free web development resources — YouTube channels, MDN docs, and project-based tutorials — into a clear 8-week path. Our mentors review your work and keep you on track so you finish with real websites in your portfolio.</p>
+          <div class="price-block">
+            <div class="price-paid">₦40,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1–2</span>
+              <h5 class="week-title">HTML & CSS Mastery</h5>
+            </div>
+            <ul class="week-topics"><li>HTML structure, semantic elements, and best practices</li>
+<li>CSS: Flexbox, Grid, and responsive design</li>
+<li>Mobile-first design principles</li>
+<li>Building complete page layouts</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3–4</span>
+              <h5 class="week-title">JavaScript Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>JavaScript basics: variables, functions, DOM manipulation</li>
+<li>Events, forms, and user interaction</li>
+<li>Fetch API and working with live data</li>
+<li>Making pages dynamic and interactive</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5–6</span>
+              <h5 class="week-title">Modern Frontend Development</h5>
+            </div>
+            <ul class="week-topics"><li>Introduction to React — the most in-demand framework</li>
+<li>Components, state, and props</li>
+<li>Routing and multi-page apps</li>
+<li>Working with APIs in React</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 7–8</span>
+              <h5 class="week-title">Build, Deploy & Launch</h5>
+            </div>
+            <ul class="week-topics"><li>CMS platforms: WordPress and Webflow</li>
+<li>Web performance and SEO fundamentals</li>
+<li>Deploying to Netlify, Vercel, or cPanel</li>
+<li>Building client-ready websites and pricing your services</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-05">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">05</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦35,000</span>
+          </div>
+          <h3 class="course-name">Mobile App Development</h3>
+          <div class="course-meta">
+            <span>⏱ 8 Weeks</span>
+            <span>📶 Beginner → Launch-Ready</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We curate free mobile development resources and organise them into a structured path from design to publishing. Our mentors guide you through the confusing parts — environment setup, debugging, and app store submission — so you actually launch something.</p>
+          <div class="price-block">
+            <div class="price-paid">₦35,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1–2</span>
+              <h5 class="week-title">App Design & UX Principles</h5>
+            </div>
+            <ul class="week-topics"><li>How great apps are designed</li>
+<li>User experience fundamentals for mobile</li>
+<li>Wireframing your first app in Figma</li>
+<li>Understanding iOS and Android differences</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3–4</span>
+              <h5 class="week-title">React Native Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>Setting up your development environment</li>
+<li>Components, navigation, and state management</li>
+<li>Styling for mobile screens</li>
+<li>Building your first working app</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5–6</span>
+              <h5 class="week-title">Building Real App Features</h5>
+            </div>
+            <ul class="week-topics"><li>User authentication and accounts</li>
+<li>Push notifications</li>
+<li>Integrating APIs and real-time data</li>
+<li>In-app payments with Paystack</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 7–8</span>
+              <h5 class="week-title">Publishing & Monetization</h5>
+            </div>
+            <ul class="week-topics"><li>Testing on real devices</li>
+<li>Publishing to Google Play Store</li>
+<li>Publishing to Apple App Store</li>
+<li>App monetization strategies</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-06">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">06</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦25,000</span>
+          </div>
+          <h3 class="course-name">UI/UX Design</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 Beginner → Portfolio-Ready</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We bring together the best free design tutorials, Figma resources, and UX guides and organise them into a structured 6-week path. Our mentors give feedback on your actual designs so you develop real taste and a strong portfolio.</p>
+          <div class="price-block">
+            <div class="price-paid">₦25,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Design Principles & Figma</h5>
+            </div>
+            <ul class="week-topics"><li>The core principles of good design</li>
+<li>Setting up and navigating Figma</li>
+<li>Frames, shapes, and design basics</li>
+<li>Your first complete design in Figma</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">User Research & UX Thinking</h5>
+            </div>
+            <ul class="week-topics"><li>What UX is and why it matters</li>
+<li>User research methods and interviews</li>
+<li>User personas and journey maps</li>
+<li>Information architecture and user flows</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">Wireframing & Prototyping</h5>
+            </div>
+            <ul class="week-topics"><li>Low-fidelity and high-fidelity wireframes</li>
+<li>Creating interactive prototypes in Figma</li>
+<li>Testing your prototypes with real users</li>
+<li>Presenting designs to clients</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">Visual Design & UI Craft</h5>
+            </div>
+            <ul class="week-topics"><li>Typography systems and font pairing</li>
+<li>Color theory and palette creation</li>
+<li>Designing icons, buttons, and components</li>
+<li>Accessibility and inclusive design</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">Design Systems</h5>
+            </div>
+            <ul class="week-topics"><li>What a design system is and why it matters</li>
+<li>Building reusable components in Figma</li>
+<li>Design tokens and consistency</li>
+<li>Handing off designs to developers</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Portfolio & Getting Hired</h5>
+            </div>
+            <ul class="week-topics"><li>Redesigning a real product as your portfolio project</li>
+<li>Building a professional design portfolio</li>
+<li>Case study writing</li>
+<li>Getting freelance clients and first jobs</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-07">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">07</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦30,000</span>
+          </div>
+          <h3 class="course-name">Data Analytics</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 Beginner → Analyst-Ready</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We curate the best free data analytics resources — from Google and Microsoft official tutorials to YouTube deep dives — and structure them into a clear learning path. Our mentors help you apply each skill to real data so you build genuine confidence.</p>
+          <div class="price-block">
+            <div class="price-paid">₦30,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Data Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>What data analytics is and why it matters</li>
+<li>Types of data and data sources</li>
+<li>Setting up your analytics workspace</li>
+<li>Intro to Excel and Google Sheets for data</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">Excel & Google Sheets Mastery</h5>
+            </div>
+            <ul class="week-topics"><li>Data cleaning and formatting</li>
+<li>VLOOKUP, IF, SUMIF, INDEX/MATCH</li>
+<li>Pivot tables and data summarization</li>
+<li>Building dashboards in spreadsheets</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">SQL Basics</h5>
+            </div>
+            <ul class="week-topics"><li>What databases are and how SQL works</li>
+<li>Writing SELECT queries</li>
+<li>Filtering, sorting, and joining data</li>
+<li>Real-world SQL exercises</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">Data Visualization with Power BI</h5>
+            </div>
+            <ul class="week-topics"><li>Principles of good data visualization</li>
+<li>Building dashboards in Power BI</li>
+<li>Charts, graphs, and storytelling with data</li>
+<li>Creating executive reports</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">Machine Learning Introduction</h5>
+            </div>
+            <ul class="week-topics"><li>What machine learning is — no math required</li>
+<li>Types of ML: classification, regression, clustering</li>
+<li>Using Python for basic ML tasks</li>
+<li>Real business applications of ML</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Real-World Analytics Project</h5>
+            </div>
+            <ul class="week-topics"><li>End-to-end project: raw data to insights</li>
+<li>Building a professional dashboard</li>
+<li>Presenting data to stakeholders</li>
+<li>Building your analytics portfolio and getting hired</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-08">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">08</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦30,000</span>
+          </div>
+          <h3 class="course-name">Cybersecurity</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 Beginner → Security-Ready</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We curate free cybersecurity resources — TryHackMe, Cybrary, YouTube courses, and official security docs — and structure them into a practical 6-week path. Our mentors walk with you and help you stay focused in a field that can feel overwhelming at first.</p>
+          <div class="price-block">
+            <div class="price-paid">₦30,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Security Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>What cybersecurity is and why it matters</li>
+<li>Types of cyber threats and attacks</li>
+<li>CIA triad: Confidentiality, Integrity, Availability</li>
+<li>Basic security hygiene everyone needs</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">Network Security</h5>
+            </div>
+            <ul class="week-topics"><li>How networks work and where vulnerabilities exist</li>
+<li>Firewalls, VPNs, and network monitoring</li>
+<li>Wi-Fi security and common network attacks</li>
+<li>Protecting your organization's network</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">Ethical Hacking Introduction</h5>
+            </div>
+            <ul class="week-topics"><li>What ethical hacking is and the legal framework</li>
+<li>Reconnaissance and information gathering</li>
+<li>Common vulnerabilities and how they are exploited</li>
+<li>Intro to tools: Kali Linux, Nmap</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">Data Protection & Compliance</h5>
+            </div>
+            <ul class="week-topics"><li>Data privacy laws: GDPR and NDPR Nigeria</li>
+<li>Encryption fundamentals</li>
+<li>Secure data handling and storage</li>
+<li>Incident response planning</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">Digital Forensics Introduction</h5>
+            </div>
+            <ul class="week-topics"><li>What digital forensics is</li>
+<li>Evidence collection and chain of custody</li>
+<li>Investigating security incidents</li>
+<li>Forensics tools overview</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Security Audit & Portfolio</h5>
+            </div>
+            <ul class="week-topics"><li>How to conduct a security audit</li>
+<li>Writing security assessment reports</li>
+<li>Building your cybersecurity portfolio</li>
+<li>Career paths in cybersecurity</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-09">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">09</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦28,000</span>
+          </div>
+          <h3 class="course-name">Cloud Computing</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 Beginner → Cloud-Ready</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We organise the best free cloud learning resources — AWS free tier tutorials, Google Cloud training, and documentation — into a structured path with real deployment exercises. Our mentors make sure you actually build on the cloud, not just read about it.</p>
+          <div class="price-block">
+            <div class="price-paid">₦28,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Cloud Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>What cloud computing is and why it matters</li>
+<li>Public, private, and hybrid cloud</li>
+<li>AWS, Google Cloud, and Azure overview</li>
+<li>Cloud pricing models and cost management</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">AWS Core Services</h5>
+            </div>
+            <ul class="week-topics"><li>EC2 — virtual servers in the cloud</li>
+<li>S3 — storage and file management</li>
+<li>IAM — identity and access management</li>
+<li>RDS — managed databases</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">Google Cloud Platform</h5>
+            </div>
+            <ul class="week-topics"><li>GCP vs AWS — key differences</li>
+<li>Compute Engine and Cloud Storage</li>
+<li>BigQuery for data analytics</li>
+<li>Firebase for app development</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">Serverless & Deployment</h5>
+            </div>
+            <ul class="week-topics"><li>What serverless computing is</li>
+<li>AWS Lambda and Google Cloud Functions</li>
+<li>Containerization with Docker basics</li>
+<li>Kubernetes introduction</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">DevOps on Cloud</h5>
+            </div>
+            <ul class="week-topics"><li>What DevOps is and why it matters</li>
+<li>CI/CD pipelines — automating deployments</li>
+<li>Infrastructure as Code with Terraform</li>
+<li>Monitoring and logging in production</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Cloud Project & Certification Prep</h5>
+            </div>
+            <ul class="week-topics"><li>Building and deploying a complete cloud project</li>
+<li>Cloud architecture best practices</li>
+<li>Preparing for AWS or Google Cloud certifications</li>
+<li>Cloud career paths and opportunities</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-10">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">10</span>
+            <span class="badge-free">FREE Course</span>
+          </div>
+          <h3 class="course-name">Innovation & Entrepreneurship</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 All Levels</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">The learning path for this track is free — we curate the best free resources on problem-solving, design thinking, and entrepreneurship and make them available to explore at no cost. Pay a commitment fee only to access mentorship, accountability, and the paid community.</p>
+          <div class="price-block">
+            
+          <div class="price-free">Free to Access</div>
+          <div class="mentorship-price">Mentorship & Extras — ₦10,000</div>
+          </div>
+          <div class="cta-block">
+            
+          <a href="https://wa.link/v1pq3e" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-free">Explore Free Learning Path →</a>
+          <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-mentorship">Pay for Mentorship ₦10,000 →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Problem Discovery</h5>
+            </div>
+            <ul class="week-topics"><li>How to identify real problems worth solving</li>
+<li>Problem validation frameworks</li>
+<li>Market research on a budget</li>
+<li>Customer discovery interviews</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">Design Thinking</h5>
+            </div>
+            <ul class="week-topics"><li>The 5 stages of design thinking</li>
+<li>Empathy mapping and user personas</li>
+<li>Ideation techniques and brainstorming</li>
+<li>Rapid prototyping concepts</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">Startup Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>How startups work — the business model</li>
+<li>Types of businesses: service, product, SaaS</li>
+<li>Legal basics for starting a business in Nigeria</li>
+<li>Registering with CAC</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">MVP & Product Strategy</h5>
+            </div>
+            <ul class="week-topics"><li>What a minimum viable product is</li>
+<li>Building an MVP on a budget</li>
+<li>Testing and validating with real users</li>
+<li>Iterating based on feedback</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">Business Models & Growth</h5>
+            </div>
+            <ul class="week-topics"><li>Revenue models: subscription, marketplace, service</li>
+<li>Unit economics — understanding your numbers</li>
+<li>Growth strategies for early-stage businesses</li>
+<li>Funding options: bootstrapping, investors, grants</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Launch & Pitch</h5>
+            </div>
+            <ul class="week-topics"><li>Planning and executing a product launch</li>
+<li>Building your pitch deck</li>
+<li>How to pitch to investors and partners</li>
+<li>Your next steps as a founder</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-11">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">11</span>
+            <span class="badge-paid" title="Commitment fee required for mentorship access">₦22,000</span>
+          </div>
+          <h3 class="course-name">Graphic Design</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 Beginner → Professional</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">We curate the best free graphic design resources — Canva tutorials, Adobe training, YouTube guides, and AI tool walkthroughs — and organise them into a practical 6-week path. Our mentors review your work and help you build a portfolio clients will pay for.</p>
+          <div class="price-block">
+            <div class="price-paid">₦22,000</div>
+          </div>
+          <div class="cta-block">
+            <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-paid">Join This Learning Path →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Design Principles & Color Theory</h5>
+            </div>
+            <ul class="week-topics"><li>The fundamental principles of design</li>
+<li>Color theory: hue, saturation, contrast</li>
+<li>Typography basics and font pairing</li>
+<li>Setting up Canva and Adobe Express</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">Logo & Brand Identity Design</h5>
+            </div>
+            <ul class="week-topics"><li>What makes a great logo</li>
+<li>Logo design process from brief to final</li>
+<li>Brand identity systems: colors, fonts, patterns</li>
+<li>Building a brand style guide</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">Digital Design & Social Media</h5>
+            </div>
+            <ul class="week-topics"><li>Designing for Instagram, Facebook, and LinkedIn</li>
+<li>Creating content templates that scale</li>
+<li>Canva advanced features and brand kit</li>
+<li>Designing for multiple formats at once</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">AI-Powered Design</h5>
+            </div>
+            <ul class="week-topics"><li>AI image generation: Midjourney, Adobe Firefly, DALL-E</li>
+<li>Writing prompts for great AI visuals</li>
+<li>Combining AI with manual design</li>
+<li>Designing at 10× speed with AI</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">Motion Graphics & Animated Content</h5>
+            </div>
+            <ul class="week-topics"><li>Introduction to motion design</li>
+<li>Creating simple animations in Canva</li>
+<li>Video thumbnails and YouTube graphics</li>
+<li>Animated social media content</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Portfolio & Freelancing</h5>
+            </div>
+            <ul class="week-topics"><li>Building a professional design portfolio</li>
+<li>Setting your rates and packages</li>
+<li>Finding clients on Fiverr, Upwork, and Instagram</li>
+<li>Delivering client work professionally</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-row" id="course-12">
+        <div class="course-info">
+          <div class="ci-top">
+            <span class="course-num">12</span>
+            <span class="badge-free">FREE Course</span>
+          </div>
+          <h3 class="course-name">Digital Marketing</h3>
+          <div class="course-meta">
+            <span>⏱ 6 Weeks</span>
+            <span>📶 All Levels</span>
+            <span>💻 Online</span>
+          </div>
+          <p class="course-desc">The learning path for this track is free — we curate the best free digital marketing resources from Google, HubSpot, Meta, and YouTube and make them available to explore at no cost. Pay a commitment fee only to access mentorship, accountability, and the paid community.</p>
+          <div class="price-block">
+            
+          <div class="price-free">Free to Access</div>
+          <div class="mentorship-price">Mentorship & Extras — ₦8,000</div>
+          </div>
+          <div class="cta-block">
+            
+          <a href="https://wa.link/v1pq3e" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-free">Explore Free Learning Path →</a>
+          <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" class="btn-enroll btn-mentorship">Pay for Mentorship ₦8,000 →</a>
+          </div>
+        </div>
+        <div class="course-curriculum">
+          <div class="curriculum-label">Full Curriculum</div>
+          <div class="week-track">
+            
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 1</span>
+              <h5 class="week-title">Marketing Strategy Fundamentals</h5>
+            </div>
+            <ul class="week-topics"><li>What digital marketing is and why it matters</li>
+<li>Understanding your target audience</li>
+<li>Building a marketing strategy from scratch</li>
+<li>Key metrics every marketer must track</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 2</span>
+              <h5 class="week-title">Content Marketing & Copywriting</h5>
+            </div>
+            <ul class="week-topics"><li>What content marketing is and why it works</li>
+<li>Writing copy that sells: headlines, CTAs, body copy</li>
+<li>Blog, email, and social caption writing</li>
+<li>Building a content calendar</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 3</span>
+              <h5 class="week-title">Social Media Marketing</h5>
+            </div>
+            <ul class="week-topics"><li>Platform strategies: Instagram, Facebook, LinkedIn, TikTok</li>
+<li>Building and growing an audience organically</li>
+<li>Community management and engagement</li>
+<li>Social media analytics</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 4</span>
+              <h5 class="week-title">SEO & Email Marketing</h5>
+            </div>
+            <ul class="week-topics"><li>How search engines work and why SEO matters</li>
+<li>On-page SEO: keywords, titles, meta descriptions</li>
+<li>Email list building and email marketing basics</li>
+<li>Tools: Mailchimp, Brevo</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 5</span>
+              <h5 class="week-title">Paid Advertising Basics</h5>
+            </div>
+            <ul class="week-topics"><li>Facebook and Instagram Ads — getting started</li>
+<li>Google Ads fundamentals</li>
+<li>Setting a budget and reading ad reports</li>
+<li>Retargeting and lookalike audiences</li></ul>
+          </div>
+        </div>
+        <div class="week-item">
+          <div class="week-dot"></div>
+          <div class="week-body">
+            <div class="week-header">
+              <span class="week-label">Week 6</span>
+              <h5 class="week-title">Analytics, Growth & Career</h5>
+            </div>
+            <ul class="week-topics"><li>Google Analytics 4 fundamentals</li>
+<li>Reading data and making better decisions</li>
+<li>Building a marketing portfolio</li>
+<li>Freelancing vs in-house marketing careers</li></ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="benefits">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--gold);">What the commitment fee gives you</div>
+    <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--paper);letter-spacing:-0.01em;max-width:44ch;">When you join a learning path, you get what the internet can't give you.</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card"><span class="benefit-tag">01 Mentorship</span><h4>Personal Mentorship</h4><p>Matthew and our mentors walk with you through the path — answering questions, reviewing your work, and making sure you do not get stuck alone.</p></div>
+      <div class="benefit-card"><span class="benefit-tag">02 Community</span><h4>Exclusive Paid Community</h4><p>Access a private, curated community of people on the same path — separate from the free group. Accountability, collaboration, and shared progress.</p></div>
+      <div class="benefit-card"><span class="benefit-tag">03 Accountability</span><h4>Accountability Partners</h4><p>Paired with someone on a similar path. The biggest reason people quit is isolation — we solve that by making sure you have someone beside you.</p></div>
+      <div class="benefit-card"><span class="benefit-tag">04 Careers</span><h4>Job Opportunities</h4><p>We curate real job listings, freelance leads, and referral opportunities and share them with paid members first — before they go anywhere else.</p></div>
+      <div class="benefit-card"><span class="benefit-tag">05 Career Guide</span><h4>How to Land Opportunities with This Skill</h4><p>A dedicated mentorship session on packaging your skill, building a portfolio, writing your CV, and positioning yourself to get hired or go freelance.</p></div>
+      <div class="benefit-card"><span class="benefit-tag">06 Certificate</span><h4>Certificate of Completion</h4><p>Once you complete the path, you receive an official YRL Innovation Lab certificate — shareable on LinkedIn and addable to your CV.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="paid-community">
+  <div class="wrap">
+    <div class="pc-inner">
+      <div>
+        <div class="eyebrow">Exclusive Access</div>
+        <h2>The YRL Paid Members Community.</h2>
+        <p>This is not the public WhatsApp group. This is a private, curated space exclusively for people who have committed to a learning path and are actively doing the work.</p>
+        <p>You earn your way in by paying the commitment fee and showing up. The bar is intentional — it keeps the quality of conversation and collaboration high.</p>
+        <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:var(--ink);color:var(--paper);padding:13px 22px;font-weight:600;font-size:0.88rem;transition:background .15s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='var(--ink)';this.style.color='var(--paper)'">Join a Learning Path →</a>
+      </div>
+      <div class="pc-list">
+        <div class="pc-item"><span class="pc-arrow">→</span><div><h5>Weekly live mentorship sessions</h5><p>Direct Q&A with Matthew and YRL mentors every week</p></div></div>
+        <div class="pc-item"><span class="pc-arrow">→</span><div><h5>Accountability partner pairing</h5><p>Matched with someone at your level and pace</p></div></div>
+        <div class="pc-item"><span class="pc-arrow">→</span><div><h5>Job board & freelance opportunities</h5><p>Curated leads posted for community members first</p></div></div>
+        <div class="pc-item"><span class="pc-arrow">→</span><div><h5>Portfolio & career reviews</h5><p>Get your work reviewed before applying anywhere</p></div></div>
+        <div class="pc-item"><span class="pc-arrow">→</span><div><h5>Early access to new programs</h5><p>First to know about every new course and challenge</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:72px 0;border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="eyebrow" style="justify-content:center;">Understanding the model</div>
+      <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-0.01em;">Free gives you the map. The commitment fee gives you a guide.</h2>
+      <p style="opacity:0.65;margin-top:12px;max-width:56ch;margin-left:auto;margin-right:auto;font-size:0.95rem;">The internet has every resource you need to learn any skill. The problem has never been access — it has been structure, consistency, and accountability. That is exactly what we provide.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);">
+      <div style="background:var(--paper);padding:36px 32px;">
+        <div style="font-family:var(--mono);font-size:0.65rem;opacity:0.5;margin-bottom:20px;text-transform:uppercase;letter-spacing:0.1em;">Free — Explore the Path Yourself</div>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.75;"><span style="color:var(--gold-deep);font-weight:700;">✓</span><span>Curated free resources for every track</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.75;"><span style="color:var(--gold-deep);font-weight:700;">✓</span><span>Structured week-by-week learning path</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.75;"><span style="color:var(--gold-deep);font-weight:700;">✓</span><span>Self-paced — go at your own speed</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.75;"><span style="color:var(--gold-deep);font-weight:700;">✓</span><span>Access to the free YRL community</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.45;"><span>✗</span><span>No personal mentorship</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.45;"><span>✗</span><span>No accountability partner</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.45;"><span>✗</span><span>No access to the paid members community</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.45;"><span>✗</span><span>No job support or career guidance</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;opacity:0.45;"><span>✗</span><span>No certificate</span></div>
+        </div>
+        <a href="index.html#register" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;border:1px solid var(--line-strong);padding:12px 20px;font-size:0.88rem;font-weight:600;transition:background .15s,color .15s;" onmouseover="this.style.background='var(--ink)';this.style.color='var(--paper)'" onmouseout="this.style.background='';this.style.color=''">Join the Free Community →</a>
+      </div>
+      <div style="background:var(--ink);padding:36px 32px;">
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);margin-bottom:20px;text-transform:uppercase;letter-spacing:0.1em;">With Commitment Fee — Guided Mentorship Track</div>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <div style="display:flex;gap:10px;font-size:0.88rem;color:rgba(250,250,246,0.85);"><span style="color:var(--gold);font-weight:700;">✓</span><span>Same curated path — structured by us so you never get lost</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;color:rgba(250,250,246,0.85);"><span style="color:var(--gold);font-weight:700;">✓</span><span>Weekly check-ins with Matthew or a YRL mentor</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;color:rgba(250,250,246,0.85);"><span style="color:var(--gold);font-weight:700;">✓</span><span>Accountability partner — someone walks the path with you</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;color:rgba(250,250,246,0.85);"><span style="color:var(--gold);font-weight:700;">✓</span><span>Access to the exclusive paid members community</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;color:rgba(250,250,246,0.85);"><span style="color:var(--gold);font-weight:700;">✓</span><span>Job listings and freelance leads shared first</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;color:rgba(250,250,246,0.85);"><span style="color:var(--gold);font-weight:700;">✓</span><span>Career guidance — how to get hired with this skill</span></div>
+          <div style="display:flex;gap:10px;font-size:0.88rem;color:rgba(250,250,246,0.85);"><span style="color:var(--gold);font-weight:700;">✓</span><span>Official YRL certificate of completion</span></div>
+        </div>
+        <a href="https://wa.link/fa154i" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;background:var(--gold);color:var(--ink);padding:12px 22px;font-size:0.88rem;font-weight:700;transition:background .15s;" onmouseover="this.style.background='#9C6E18';this.style.color='var(--paper)'" onmouseout="this.style.background='var(--gold)';this.style.color='var(--ink)'">Join a Guided Learning Path →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cert-section">
+  <div class="wrap">
+    <div class="cert-inner">
+      <div>
+        <div class="eyebrow">Certification</div>
+        <h2>Every course you complete earns you a certificate.</h2>
+        <p>Official YRL Innovation Lab certificates — shareable on LinkedIn, addable to your CV, and proof of what you actually built.</p>
+        <a href="index.html#register" style="display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);padding:12px 20px;font-weight:600;font-size:0.88rem;transition:background .15s,color .15s;" onmouseover="this.style.background='var(--ink)';this.style.color='var(--paper)'" onmouseout="this.style.background='';this.style.color=''">Join the Community Free →</a>
+      </div>
+      <div class="cert-table">
+        <div class="cert-row"><span>Bootcamp Certificate</span><strong class="gold">₦1,500 — commitment fee payers</strong></div>
+        <div class="cert-row"><span>Bootcamp Certificate</span><strong>₦3,000 — general</strong></div>
+        <div class="cert-row"><span>Course Certificate</span><strong>Included with course enrollment</strong></div>
+        <div class="cert-row"><span>Format</span><strong>Digital PDF + LinkedIn share</strong></div>
+        <div class="cert-row"><span>Issued by</span><strong>YRL Innovation Lab</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><div class="fbrand">YRL Innovation Lab</div><div class="ftag">Innovating with Purpose. Building for Impact.</div></div>
+    <div class="ftag">© 2026 YRL Innovation Lab. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYqnaLh0OQF66k5z8uJvb71Fug4n6tIQ1ItiWsCH-dKmbxMKfl6imjXqZXXE3sDJb5/exec";
+
+function submitSubscriber() {
+  const email = document.getElementById('sub-email').value.trim();
+  const btn   = document.querySelector('.sub-btn');
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    return alert('Please enter a valid email address.');
+  btn.textContent = 'Subscribing...';
+  btn.disabled = true;
+  fetch(SCRIPT_URL, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify({ type:'course_subscriber', email })
+  })
+  .then(() => {
+    document.getElementById('sub-form').style.display = 'none';
+    document.getElementById('sub-ok').style.display = 'block';
+  })
+  .catch(() => {
+    btn.textContent = 'Notify Me →';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  });
+}
+</script>
+
+</body>
+</html>
