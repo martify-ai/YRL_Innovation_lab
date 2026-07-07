@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YRL — AI Possibilities Bootcamp Flyer Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14130F;--paper:#FAFAF6;--paper-dim:#F1EFE6;
+  --gold:#C8932B;--gold-deep:#9C6E18;
+  --serif:'Fraunces',serif;--sans:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#111;font-family:var(--sans);padding:48px 24px 80px;}
+
+.kit-header{text-align:center;margin-bottom:56px;}
+.kit-header h1{font-family:var(--serif);font-size:1.6rem;font-weight:500;color:#FAFAF6;margin-bottom:8px;}
+.kit-header p{font-family:var(--mono);font-size:0.72rem;color:rgba(250,250,246,0.4);letter-spacing:0.1em;}
+.kit-header .tip{display:inline-block;margin-top:14px;background:rgba(200,147,43,0.12);border:1px solid rgba(200,147,43,0.3);color:#C8932B;font-family:var(--mono);font-size:0.72rem;padding:8px 18px;letter-spacing:0.06em;}
+
+.section-title{font-family:var(--mono);font-size:0.68rem;color:rgba(200,147,43,0.7);text-transform:uppercase;letter-spacing:0.12em;margin:52px 0 18px;display:flex;align-items:center;gap:12px;}
+.section-title::after{content:"";flex:1;height:1px;background:rgba(200,147,43,0.2);}
+
+.flyer-row{display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;}
+.flyer-wrap{display:flex;flex-direction:column;gap:10px;}
+.flyer-label{font-family:var(--mono);font-size:0.66rem;color:rgba(250,250,246,0.4);letter-spacing:0.08em;}
+
+/* ─── BASE FLYER ─── */
+.flyer{position:relative;overflow:hidden;flex-shrink:0;display:block;}
+.flyer.sq{width:540px;height:540px;}
+.flyer.pt{width:304px;height:540px;}
+.flyer.ls{width:540px;height:304px;}
+
+/* ══════════════════════════════════════════════
+   FLYER 1 — THE MAIN EVENT POSTER
+   Dark, confident, typographic
+══════════════════════════════════════════════ */
+.f1{background:var(--ink);}
+/* double-border frame */
+.f1-frame-outer{position:absolute;inset:14px;border:1px solid rgba(200,147,43,0.55);pointer-events:none;}
+.f1-frame-inner{position:absolute;inset:20px;border:1px solid rgba(200,147,43,0.18);pointer-events:none;}
+/* corner marks */
+.f1-corner{position:absolute;width:16px;height:16px;}
+.f1-corner.tl{top:14px;left:14px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);}
+.f1-corner.tr{top:14px;right:14px;border-top:2px solid var(--gold);border-right:2px solid var(--gold);}
+.f1-corner.bl{bottom:14px;left:14px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold);}
+.f1-corner.br{bottom:14px;right:14px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);}
+/* Y watermark — brand signature element */
+.f1-ywm{position:absolute;right:-40px;bottom:-20px;opacity:0.055;pointer-events:none;}
+/* top label */
+.f1-toplabel{
+  position:absolute;top:36px;left:0;right:0;
+  text-align:center;
+  font-family:var(--mono);font-size:0.5rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:rgba(200,147,43,0.65);
+}
+/* badge */
+.f1-badge{
+  position:absolute;top:54px;left:50%;transform:translateX(-50%);
+  border:1px solid rgba(200,147,43,0.45);padding:5px 14px;
+  font-family:var(--mono);font-size:0.48rem;letter-spacing:0.12em;color:var(--gold);
+  white-space:nowrap;
+}
+/* main type block */
+.f1-main{
+  position:absolute;top:50%;left:0;right:0;
+  transform:translateY(-54%);
+  text-align:center;padding:0 30px;
+}
+.f1-ai{
+  font-family:var(--serif);font-weight:900;font-style:italic;
+  font-size:7.8rem;line-height:0.88;color:var(--paper);
+  letter-spacing:-0.04em;display:block;
+}
+.f1-poss{
+  font-family:var(--serif);font-weight:700;
+  font-size:1.35rem;line-height:1;color:var(--gold);
+  letter-spacing:0.18em;text-transform:uppercase;
+  display:block;margin-top:4px;
+}
+.f1-boot{
+  font-family:var(--sans);font-weight:700;
+  font-size:0.78rem;color:rgba(250,250,246,0.6);
+  letter-spacing:0.32em;text-transform:uppercase;
+  display:block;margin-top:8px;
+}
+/* divider */
+.f1-rule{
+  position:absolute;left:36px;right:36px;
+  height:1px;background:rgba(200,147,43,0.28);
+}
+.f1-rule.top{top:78px;}
+.f1-rule.mid{top:calc(50% + 92px);}
+/* info pills */
+.f1-pills{
+  position:absolute;left:36px;right:36px;
+  display:flex;justify-content:center;gap:0;
+}
+.f1-pill{
+  font-family:var(--mono);font-size:0.46rem;letter-spacing:0.14em;
+  color:var(--gold);padding:7px 14px;
+  border-right:1px solid rgba(200,147,43,0.2);
+}
+.f1-pill:last-child{border-right:none;}
+/* date */
+.f1-date{
+  position:absolute;left:0;right:0;text-align:center;
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:0.75rem;color:rgba(250,250,246,0.45);letter-spacing:0.04em;
+}
+/* topics */
+.f1-topics{
+  position:absolute;left:36px;right:36px;
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+}
+.f1-topic{
+  font-family:var(--mono);font-size:0.42rem;letter-spacing:0.06em;
+  border:1px solid rgba(250,250,246,0.12);padding:4px 10px;
+  color:rgba(250,250,246,0.45);
+}
+/* footer */
+.f1-footer{
+  position:absolute;bottom:0;left:0;right:0;height:50px;
+  border-top:1px solid rgba(250,250,246,0.07);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 36px;
+}
+.f1-footer .brand{font-family:var(--serif);font-size:0.72rem;color:rgba(250,250,246,0.55);font-weight:600;}
+.f1-footer .url{font-family:var(--mono);font-size:0.44rem;color:var(--gold);letter-spacing:0.08em;}
+
+/* ══════════════════════════════════════════════
+   FLYER 2 — CURRICULUM BREAKDOWN
+   Off-white, editorial grid, 3-day breakdown
+══════════════════════════════════════════════ */
+.f2{background:var(--paper);}
+.f2-header{position:absolute;top:0;left:0;right:0;height:116px;background:var(--ink);padding:22px 28px 18px;}
+.f2-header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.f2-header-top .hl{font-family:var(--mono);font-size:0.48rem;color:rgba(200,147,43,0.7);letter-spacing:0.14em;text-transform:uppercase;}
+.f2-header-top .hr{font-family:var(--mono);font-size:0.48rem;color:rgba(250,250,246,0.35);letter-spacing:0.08em;}
+.f2-htitle{font-family:var(--serif);font-weight:700;font-size:1.55rem;color:var(--paper);line-height:1;letter-spacing:-0.02em;}
+.f2-htitle em{font-style:italic;font-weight:600;color:var(--gold);}
+/* subhead */
+.f2-sub{
+  position:absolute;top:130px;left:28px;right:28px;
+  font-family:var(--mono);font-size:0.5rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--gold-deep);
+  display:flex;align-items:center;gap:10px;
+}
+.f2-sub::after{content:"";flex:1;height:1px;background:rgba(200,147,43,0.25);}
+/* day columns */
+.f2-days{
+  position:absolute;top:158px;left:0;right:0;bottom:54px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+}
+.f2-day{padding:18px 18px;border-right:1px solid rgba(20,19,15,0.1);}
+.f2-day:last-child{border-right:none;}
+.f2-day .dd-num{font-family:var(--mono);font-size:0.48rem;color:var(--gold-deep);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;display:block;}
+.f2-day .dd-theme{font-family:var(--serif);font-weight:700;font-size:0.9rem;color:var(--ink);margin-bottom:10px;line-height:1.2;}
+.f2-day .dd-rule{height:2px;background:var(--ink);margin-bottom:10px;}
+.f2-day ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.f2-day ul li{font-size:0.62rem;opacity:0.62;padding-left:10px;position:relative;line-height:1.4;}
+.f2-day ul li::before{content:"→";position:absolute;left:0;color:var(--gold-deep);font-size:0.5rem;}
+/* bottom bar */
+.f2-bar{
+  position:absolute;bottom:0;left:0;right:0;height:54px;
+  background:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;padding:0 28px;
+}
+.f2-bar .bl{font-family:var(--mono);font-size:0.46rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;}
+.f2-bar .br{font-family:var(--mono);font-size:0.46rem;color:rgba(250,250,246,0.45);letter-spacing:0.08em;}
+
+/* ══════════════════════════════════════════════
+   FLYER 3 — WHATSAPP STATUS (PORTRAIT 9:16)
+   Dark, vertical, high contrast
+══════════════════════════════════════════════ */
+.f3{background:var(--ink);}
+/* top band */
+.f3-top{
+  position:absolute;top:0;left:0;right:0;height:18%;
+  border-bottom:1px solid rgba(200,147,43,0.2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.f3-toplabel{font-family:var(--mono);font-size:0.46rem;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;}
+.f3-topname{font-family:var(--mono);font-size:0.38rem;color:rgba(250,250,246,0.3);letter-spacing:0.1em;text-transform:uppercase;}
+/* mid — big type */
+.f3-mid{
+  position:absolute;top:18%;left:0;right:0;bottom:38%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 20px;text-align:center;
+}
+.f3-ai{font-family:var(--serif);font-weight:900;font-style:italic;font-size:5.5rem;color:var(--paper);line-height:0.88;letter-spacing:-0.04em;}
+.f3-poss{font-family:var(--serif);font-weight:700;font-size:0.95rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-top:6px;}
+.f3-boot{font-family:var(--sans);font-weight:700;font-size:0.62rem;color:rgba(250,250,246,0.5);letter-spacing:0.28em;text-transform:uppercase;margin-top:6px;}
+/* info band */
+.f3-info{
+  position:absolute;bottom:38%;left:0;right:0;height:20%;
+  border-top:1px solid rgba(200,147,43,0.2);border-bottom:1px solid rgba(200,147,43,0.2);
+  display:flex;
+}
+.f3-info-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-right:1px solid rgba(200,147,43,0.15);}
+.f3-info-item:last-child{border-right:none;}
+.f3-info-item .iv{font-family:var(--serif);font-weight:700;font-size:0.9rem;color:var(--paper);}
+.f3-info-item .ik{font-family:var(--mono);font-size:0.38rem;color:rgba(200,147,43,0.65);letter-spacing:0.12em;text-transform:uppercase;}
+/* bottom CTA */
+.f3-cta{
+  position:absolute;bottom:0;left:0;right:0;height:38%;
+  padding:16px 20px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.f3-date{font-family:var(--serif);font-style:italic;font-size:0.7rem;color:rgba(250,250,246,0.45);text-align:center;}
+.f3-topics{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;}
+.f3-topic{font-family:var(--mono);font-size:0.38rem;letter-spacing:0.06em;border:1px solid rgba(200,147,43,0.3);padding:4px 9px;color:rgba(200,147,43,0.75);}
+.f3-cta-box{
+  background:var(--gold);padding:11px 18px;text-align:center;
+}
+.f3-cta-box .cb-label{font-family:var(--sans);font-weight:700;font-size:0.65rem;color:var(--ink);}
+.f3-cta-box .cb-url{font-family:var(--mono);font-size:0.42rem;color:rgba(20,19,15,0.6);margin-top:2px;letter-spacing:0.06em;}
+
+/* ══════════════════════════════════════════════
+   FLYER 4 — LANDSCAPE BANNER
+   For Facebook cover, event header
+══════════════════════════════════════════════ */
+.f4{background:var(--ink);}
+.f4-left{position:absolute;top:0;left:0;bottom:0;width:44%;padding:28px 30px;display:flex;flex-direction:column;justify-content:space-between;}
+.f4-left .tl{font-family:var(--mono);font-size:0.46rem;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;}
+.f4-left h2{font-family:var(--serif);font-weight:900;font-style:italic;font-size:2.8rem;color:var(--paper);line-height:0.9;letter-spacing:-0.03em;}
+.f4-left h2 span{font-style:normal;font-weight:700;font-size:0.95rem;color:var(--gold);display:block;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;}
+.f4-left .bl{font-family:var(--mono);font-size:0.42rem;color:rgba(200,147,43,0.55);letter-spacing:0.08em;}
+.f4-divider{position:absolute;top:0;left:44%;bottom:0;width:2px;background:var(--gold);}
+.f4-right{position:absolute;top:0;right:0;bottom:0;left:46%;padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;}
+.f4-right .rl{font-family:var(--mono);font-size:0.46rem;color:rgba(250,250,246,0.35);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;}
+.f4-items{display:flex;flex-direction:column;gap:8px;flex:1;}
+.f4-item{display:flex;align-items:baseline;gap:8px;padding-bottom:7px;border-bottom:1px solid rgba(250,250,246,0.07);}
+.f4-item:last-child{border-bottom:none;}
+.f4-item .fi-dot{color:var(--gold);font-family:var(--mono);font-size:0.5rem;flex-shrink:0;}
+.f4-item span{font-family:var(--sans);font-size:0.65rem;color:rgba(250,250,246,0.75);font-weight:500;}
+.f4-bar{position:absolute;bottom:0;left:0;right:0;height:36px;border-top:1px solid rgba(200,147,43,0.15);display:flex;align-items:center;justify-content:center;}
+.f4-bar span{font-family:var(--mono);font-size:0.44rem;color:rgba(200,147,43,0.55);letter-spacing:0.14em;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<div class="kit-header">
+  <h1>YRL Innovation Lab — Bootcamp Flyer Kit</h1>
+  <p>AI POSSIBILITIES BOOTCAMP · 4 DESIGNS · BRAND COLORS #14130F · #FAFAF6 · #C8932B</p>
+  <div class="tip">💡 Right-click → Screenshot or "Save image" each flyer · Update [DATE] placeholders before posting</div>
+</div>
+
+<!-- ─── SECTION 1: MAIN POSTER ─── -->
+<div class="section-title"><span>01 — Main Event Poster (1080×1080) — Instagram, Facebook, WhatsApp</span></div>
+<div class="flyer-row">
+  <div class="flyer-wrap">
+    <div class="flyer-label">Primary flyer — use this everywhere</div>
+    <div class="flyer sq f1">
+      <!-- Y watermark (signature element) -->
+      <svg class="f1-ywm" width="420" height="490" viewBox="0 0 48 56" fill="none">
+        <line x1="5" y1="5" x2="15" y2="27" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="43" y1="5" x2="33" y2="27" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="24" y1="37" x2="24" y2="51" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+        <polygon points="24,18 33,27 24,36 15,27" fill="#C8932B"/>
+      </svg>
+
+      <!-- frame -->
+      <div class="f1-frame-outer"></div>
+      <div class="f1-frame-inner"></div>
+      <div class="f1-corner tl"></div>
+      <div class="f1-corner tr"></div>
+      <div class="f1-corner bl"></div>
+      <div class="f1-corner br"></div>
+
+      <!-- top content -->
+      <div class="f1-toplabel">YRL Innovation Lab Presents</div>
+      <div class="f1-rule top"></div>
+      <div class="f1-badge" style="top:90px;">COHORT 01 · FREE TO JOIN · FIRST EVER</div>
+
+      <!-- main type -->
+      <div class="f1-main">
+        <span class="f1-ai">AI</span>
+        <span class="f1-poss">Possibilities</span>
+        <span class="f1-boot">Bootcamp</span>
+      </div>
+
+      <!-- mid rule -->
+      <div class="f1-rule mid"></div>
+
+      <!-- pills -->
+      <div class="f1-pills" style="top:calc(50% + 108px);">
+        <div class="f1-pill">FREE</div>
+        <div class="f1-pill">3 EVENINGS</div>
+        <div class="f1-pill">7 PM DAILY</div>
+        <div class="f1-pill">ONLINE</div>
+      </div>
+
+      <!-- date -->
+      <div class="f1-date" style="top:calc(50% + 136px);">[DATE] · [DATE] · [DATE]</div>
+
+      <!-- topics -->
+      <div class="f1-topics" style="top:calc(50% + 160px);">
+        <div class="f1-topic">PROMPT ENGINEERING</div>
+        <div class="f1-topic">AI DESIGN</div>
+        <div class="f1-topic">AI AUTOMATION</div>
+        <div class="f1-topic">AI FOR BUSINESS</div>
+      </div>
+
+      <!-- footer -->
+      <div class="f1-footer">
+        <div style="display:flex;align-items:center;gap:9px;">
+          <svg width="18" height="21" viewBox="0 0 48 56" fill="none">
+            <line x1="5" y1="5" x2="15" y2="27" stroke="#FAFAF6" stroke-width="4.5" stroke-linecap="round" opacity="0.6"/>
+            <line x1="43" y1="5" x2="33" y2="27" stroke="#FAFAF6" stroke-width="4.5" stroke-linecap="round" opacity="0.6"/>
+            <line x1="24" y1="37" x2="24" y2="51" stroke="#FAFAF6" stroke-width="4.5" stroke-linecap="round" opacity="0.6"/>
+            <polygon points="24,18 33,27 24,36 15,27" fill="#C8932B"/>
+          </svg>
+          <span class="brand">YRL Innovation Lab</span>
+        </div>
+        <span class="url">yrlinnovationlab.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dark version with gold type -->
+  <div class="flyer-wrap">
+    <div class="flyer-label">Gold accent version</div>
+    <div class="flyer sq f1" style="background:#0E0D0A;">
+      <svg class="f1-ywm" width="420" height="490" viewBox="0 0 48 56" fill="none">
+        <line x1="5" y1="5" x2="15" y2="27" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="43" y1="5" x2="33" y2="27" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="24" y1="37" x2="24" y2="51" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+        <polygon points="24,18 33,27 24,36 15,27" fill="#FAFAF6" opacity="0.9"/>
+      </svg>
+      <div class="f1-frame-outer" style="border-color:rgba(200,147,43,0.4);"></div>
+      <div class="f1-frame-inner" style="border-color:rgba(200,147,43,0.12);"></div>
+      <div class="f1-corner tl"></div><div class="f1-corner tr"></div>
+      <div class="f1-corner bl"></div><div class="f1-corner br"></div>
+      <div class="f1-toplabel">YRL Innovation Lab Presents</div>
+      <div class="f1-rule top"></div>
+      <div class="f1-badge" style="top:90px;">COHORT 01 · FREE TO JOIN · FIRST EVER</div>
+      <div class="f1-main">
+        <span class="f1-ai" style="color:#C8932B;">AI</span>
+        <span class="f1-poss" style="color:#FAFAF6;">Possibilities</span>
+        <span class="f1-boot">Bootcamp</span>
+      </div>
+      <div class="f1-rule mid"></div>
+      <div class="f1-pills" style="top:calc(50% + 108px);">
+        <div class="f1-pill">FREE</div>
+        <div class="f1-pill">3 EVENINGS</div>
+        <div class="f1-pill">7 PM DAILY</div>
+        <div class="f1-pill">ONLINE</div>
+      </div>
+      <div class="f1-date" style="top:calc(50% + 136px);">[DATE] · [DATE] · [DATE]</div>
+      <div class="f1-topics" style="top:calc(50% + 160px);">
+        <div class="f1-topic">PROMPT ENGINEERING</div>
+        <div class="f1-topic">AI DESIGN</div>
+        <div class="f1-topic">AI AUTOMATION</div>
+        <div class="f1-topic">AI FOR BUSINESS</div>
+      </div>
+      <div class="f1-footer">
+        <div style="display:flex;align-items:center;gap:9px;">
+          <svg width="18" height="21" viewBox="0 0 48 56" fill="none">
+            <line x1="5" y1="5" x2="15" y2="27" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="43" y1="5" x2="33" y2="27" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="24" y1="37" x2="24" y2="51" stroke="#C8932B" stroke-width="4.5" stroke-linecap="round"/>
+            <polygon points="24,18 33,27 24,36 15,27" fill="#FAFAF6"/>
+          </svg>
+          <span class="brand">YRL Innovation Lab</span>
+        </div>
+        <span class="url">yrlinnovationlab.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 2: CURRICULUM BREAKDOWN ─── -->
+<div class="section-title"><span>02 — Curriculum Breakdown (1080×1080) — Educational post</span></div>
+<div class="flyer-row">
+  <div class="flyer-wrap">
+    <div class="flyer-label">Shows what participants will learn — post this mid-campaign</div>
+    <div class="flyer sq f2">
+      <div class="f2-header">
+        <div class="f2-header-top">
+          <span class="hl">YRL INNOVATION LAB · AI POSSIBILITIES BOOTCAMP</span>
+          <span class="hr">FREE · 3 EVENINGS · ONLINE</span>
+        </div>
+        <div class="f2-htitle">3 evenings that could<br>change <em>everything.</em></div>
+      </div>
+      <div class="f2-sub">What you will learn</div>
+      <div class="f2-days">
+        <div class="f2-day">
+          <span class="dd-num">Day 01</span>
+          <div class="dd-rule"></div>
+          <div class="dd-theme">Understanding AI</div>
+          <ul>
+            <li>What AI is and how it works</li>
+            <li>Major AI tools — ChatGPT, Claude, Gemini</li>
+            <li>Prompt Engineering</li>
+            <li>AI for Productivity</li>
+            <li>Save hours every day</li>
+          </ul>
+        </div>
+        <div class="f2-day">
+          <span class="dd-num">Day 02</span>
+          <div class="dd-rule"></div>
+          <div class="dd-theme">Creating with AI</div>
+          <ul>
+            <li>AI Content Creation</li>
+            <li>Writing captions, posts, scripts</li>
+            <li>AI Graphic Design</li>
+            <li>AI Presentations</li>
+            <li>Build in minutes</li>
+          </ul>
+        </div>
+        <div class="f2-day">
+          <span class="dd-num">Day 03</span>
+          <div class="dd-rule"></div>
+          <div class="dd-theme">Building with AI</div>
+          <ul>
+            <li>AI for Work &amp; Business</li>
+            <li>AI Automation</li>
+            <li>Remove repetitive tasks</li>
+            <li>Future AI Careers</li>
+            <li>Graduation 🎓</li>
+          </ul>
+        </div>
+      </div>
+      <div class="f2-bar">
+        <span class="bl">FREE · [DATE] — [DATE] · 7 PM DAILY</span>
+        <span class="br">yrlinnovationlab.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 3: WHATSAPP STATUS ─── -->
+<div class="section-title"><span>03 — WhatsApp Status / Instagram Story (1080×1920)</span></div>
+<div class="flyer-row">
+  <div class="flyer-wrap">
+    <div class="flyer-label">Daily WhatsApp status — use before and during bootcamp</div>
+    <div class="flyer pt f3">
+      <div class="f3-top">
+        <span class="f3-toplabel">YRL Innovation Lab Presents</span>
+        <span class="f3-topname">AI POSSIBILITIES BOOTCAMP · COHORT 01</span>
+      </div>
+      <div class="f3-mid">
+        <span class="f3-ai">AI</span>
+        <div class="f3-poss">Possibilities</div>
+        <div class="f3-boot">Bootcamp</div>
+      </div>
+      <div class="f3-info">
+        <div class="f3-info-item"><span class="iv">FREE</span><span class="ik">Cost</span></div>
+        <div class="f3-info-item"><span class="iv">3</span><span class="ik">Evenings</span></div>
+        <div class="f3-info-item"><span class="iv">7PM</span><span class="ik">Daily</span></div>
+      </div>
+      <div class="f3-cta">
+        <div class="f3-date">[DATE] · [DATE] · [DATE]</div>
+        <div class="f3-topics">
+          <span class="f3-topic">PROMPT ENGINEERING</span>
+          <span class="f3-topic">AI DESIGN</span>
+          <span class="f3-topic">AI CONTENT</span>
+          <span class="f3-topic">AI AUTOMATION</span>
+          <span class="f3-topic">AI BUSINESS</span>
+        </div>
+        <div class="f3-cta-box">
+          <div class="cb-label">Register Free — yrlinnovationlab.com</div>
+          <div class="cb-url">wa.link/v1pq3e · Join the WhatsApp Community</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flyer-wrap">
+    <div class="flyer-label">Countdown version — change number each day</div>
+    <div class="flyer pt f3" style="background:#0E0D0A;">
+      <div class="f3-top" style="border-bottom-color:rgba(200,147,43,0.25);">
+        <span class="f3-toplabel">AI Possibilities Bootcamp · YRL</span>
+        <span class="f3-topname">REGISTRATION OPEN NOW</span>
+      </div>
+      <div class="f3-mid">
+        <span class="f3-ai" style="color:#C8932B;font-size:7rem;">3</span>
+        <div class="f3-poss" style="color:#FAFAF6;">Days to go</div>
+        <div class="f3-boot" style="color:rgba(200,147,43,0.6);">Don't miss your spot</div>
+      </div>
+      <div class="f3-info" style="border-color:rgba(200,147,43,0.2);">
+        <div class="f3-info-item"><span class="iv" style="color:#C8932B;">FREE</span><span class="ik">Cost</span></div>
+        <div class="f3-info-item"><span class="iv" style="color:#C8932B;">3</span><span class="ik">Evenings</span></div>
+        <div class="f3-info-item"><span class="iv" style="color:#C8932B;">7PM</span><span class="ik">Daily</span></div>
+      </div>
+      <div class="f3-cta">
+        <div class="f3-date" style="color:rgba(250,250,246,0.35);">Starts [DATE] at 7:00 PM</div>
+        <div class="f3-topics">
+          <span class="f3-topic">BEGINNER FRIENDLY</span>
+          <span class="f3-topic">CERTIFICATE</span>
+          <span class="f3-topic">COMMUNITY</span>
+        </div>
+        <div class="f3-cta-box">
+          <div class="cb-label">Register Free Now →</div>
+          <div class="cb-url">yrlinnovationlab.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 4: LANDSCAPE BANNER ─── -->
+<div class="section-title"><span>04 — Landscape Banner (1080×566) — Facebook Cover, Event Header</span></div>
+<div class="flyer-row">
+  <div class="flyer-wrap">
+    <div class="flyer-label">Use as Facebook cover photo or event banner</div>
+    <div class="flyer ls f4">
+      <div class="f4-left">
+        <span class="tl">YRL Innovation Lab</span>
+        <h2><span>AI</span>Possibilities<br>Bootcamp</h2>
+        <span class="bl">FREE · 3 EVENINGS · 7PM DAILY · ONLINE</span>
+      </div>
+      <div class="f4-divider"></div>
+      <div class="f4-right">
+        <div class="rl">What you will learn</div>
+        <div class="f4-items">
+          <div class="f4-item"><span class="fi-dot">→</span><span>What AI is and how to use it effectively</span></div>
+          <div class="f4-item"><span class="fi-dot">→</span><span>Prompt Engineering — talk to AI like a pro</span></div>
+          <div class="f4-item"><span class="fi-dot">→</span><span>AI for Content, Design, and Presentations</span></div>
+          <div class="f4-item"><span class="fi-dot">→</span><span>AI Automation and AI for Business</span></div>
+          <div class="f4-item"><span class="fi-dot">→</span><span>Future AI careers and opportunities</span></div>
+        </div>
+      </div>
+      <div class="f4-bar">
+        <span>Register Free · yrlinnovationlab.com · [DATE] — [DATE]</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:56px;text-align:center;font-family:var(--mono);font-size:0.65rem;color:rgba(250,250,246,0.25);letter-spacing:0.1em;">
+  YRL INNOVATION LAB · AI POSSIBILITIES BOOTCAMP · FLYER KIT V1<br>
+  COLORS: #14130F · #FAFAF6 · #C8932B · FONTS: FRAUNCES + SPACE GROTESK + JETBRAINS MONO
+</div>
+
+</body>
+</html>
