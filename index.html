@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YRL Innovation Lab — Building the Next Generation of Christian Innovators</title>
+<title>YRL Innovation Lab — Building Africa's Next Generation of Innovators, Problem Solvers &amp; Creators</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -423,6 +423,32 @@
   footer .ftag{font-size:0.78rem;opacity:0.5;font-family:var(--mono);}
 
   /* ---------- Responsive ---------- */
+  /* ── HOW IT WORKS SYSTEM SECTION ── */
+  .system-section{background:var(--ink);padding:88px 0;}
+  .system-section .section-head h2{color:var(--paper);}
+  .system-section .section-head p{color:rgba(250,250,246,0.6);}
+  .system-section .eyebrow{color:var(--gold);}
+  .system-section .eyebrow::before{background:var(--gold);}
+  .system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(250,250,246,0.08);margin-top:48px;}
+  .system-card{background:var(--ink);padding:32px 28px;border:1px solid rgba(250,250,246,0.06);position:relative;}
+  .system-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);opacity:0;}
+  .system-card:hover::before{opacity:1;}
+  .system-num{font-family:var(--mono);font-size:0.62rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;display:block;}
+  .system-card h4{font-family:var(--serif);font-weight:700;font-size:1.1rem;color:var(--paper);margin-bottom:10px;line-height:1.2;}
+  .system-card p{font-size:0.86rem;color:rgba(250,250,246,0.55);line-height:1.6;}
+  .system-statement{
+    border:1px solid rgba(200,147,43,0.25);padding:36px 40px;margin-top:48px;
+    display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:center;
+  }
+  .system-statement .ss-left{font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--paper);line-height:1.2;letter-spacing:-0.01em;}
+  .system-statement .ss-left em{font-style:italic;font-weight:500;color:var(--gold);}
+  .system-statement .ss-right{font-size:0.95rem;color:rgba(250,250,246,0.65);line-height:1.7;}
+
+  @media(max-width:880px){
+    .system-grid{grid-template-columns:1fr 1fr;}
+    .system-statement{grid-template-columns:1fr;}
+  }
+
   @media (max-width: 880px){
     nav.primary{display:none;}
     .menu-toggle{display:block;}
@@ -552,7 +578,7 @@
     <a href="#top" class="brand"><span class="mark">YRL</span> YRL Innovation Lab</a>
     <nav class="primary">
       <a href="#about">About</a>
-      <a href="#mission">Mission</a>
+      <a href="#journey">Journey</a>
       <a href="#tracks">Tracks</a>
       <a href="#bootcamp">Bootcamp</a>
       <a href="courses.html">Courses</a>
@@ -567,17 +593,17 @@
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-badge"><span class="dot"></span> Building Africa's Next Generation of Innovators</div>
-    <h1>Building innovators who create <em>solutions that matter.</em></h1>
-    <p class="sub">YRL Innovation Lab is an innovation ecosystem equipping students, professionals, entrepreneurs, creators, and future leaders with modern technology skills, Artificial Intelligence, automation, software development, and innovation thinking to build solutions that create lasting impact. Founded on Christian values — open to everyone passionate about innovation.</p>
+    <h1>Building Africa's next generation of <em>innovators, problem solvers, and creators.</em></h1>
+    <p class="sub">We don't just teach people what to learn — we teach them how to learn, how to think, and how to solve problems in an AI-powered world. Through AI-assisted learning, mentorship, real projects, and accountability, we equip you to create lasting impact.</p>
     <div class="cta-row">
-      <a href="#register" class="btn btn-gold">Join the Community</a>
-      <a href="#tracks" class="btn btn-outline">Explore Our Programs</a>
+      <a href="#register" class="btn btn-gold">Start with the Free Bootcamp</a>
+      <a href="#journey" class="btn btn-outline">See the Learning Journey</a>
     </div>
     <div class="hero-strip">
-      <div><div class="num">12+</div><div class="label">Skill tracks, from AI to cybersecurity</div></div>
-      <div><div class="num">3 Days</div><div class="label">AI Possibilities Bootcamp</div></div>
-      <div><div class="num">FREE</div><div class="label">Cost to join the bootcamp</div></div>
-      <div><div class="num">001</div><div class="label">Founding cohort — now forming</div></div>
+      <div><div class="num">Learn</div><div class="label">How to learn, think, and solve</div></div>
+      <div><div class="num">Build</div><div class="label">Real projects that matter</div></div>
+      <div><div class="num">Solve</div><div class="label">Real-world challenges</div></div>
+      <div><div class="num">Serve</div><div class="label">People, communities, organisations</div></div>
     </div>
   </div>
 </header>
@@ -592,12 +618,147 @@
   </div>
 </div>
 
+
 <section id="about" style="padding-bottom:0;">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Who we are</div>
-      <h2>An ecosystem, not just a course.</h2>
-      <p>YRL Innovation Lab is a modern innovation ecosystem committed to raising builders, creators, and problem-solvers through technology, innovation, and ethical leadership. We believe technology is one of the greatest opportunities of our generation — not just to build careers, but to solve meaningful problems, improve lives, and create lasting impact. Our mission is to help people move beyond consuming technology to creating it. Guided by Christian values of integrity, excellence, stewardship, and service, we welcome everyone who shares our passion for innovation and positive change.</p>
+      <h2>A learning and innovation platform dedicated to equipping the next generation.</h2>
+      <p>YRL Innovation Lab is a learning and innovation platform dedicated to equipping individuals with the mindset, skills, mentorship, and practical experience needed to solve real-world problems and create lasting value. We believe the future belongs to people who can learn continuously, adapt quickly, and use technology responsibly to improve their work, businesses, ministries, and communities.</p>
+      <p style="margin-top:16px;opacity:0.7;">Our programs combine practical learning, project-based experiences, mentorship, and Artificial Intelligence to help learners grow into capable innovators. We don't focus on delivering information — we focus on developing capable people who keep growing long after their program has ended.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--ink);padding:88px 0;" id="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="color:var(--gold);">The Learning Journey</div>
+      <h2 style="color:var(--paper);">Two steps. One complete transformation.</h2>
+      <p style="color:rgba(250,250,246,0.6);">Every YRL learner follows the same path — starting with the AI Possibilities Bootcamp as the foundation, then moving into their chosen learning track with full mentorship and accountability.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(250,250,246,0.08);margin-top:48px;">
+      <div style="background:var(--ink);border:1px solid rgba(250,250,246,0.08);padding:40px 36px;">
+        <div style="font-family:var(--mono);font-size:0.62rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;">Step 01 — Start Here · Free</div>
+        <h3 style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--paper);margin-bottom:8px;line-height:1.15;">AI Possibilities Bootcamp</h3>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--gold);margin-bottom:20px;">Learn How to Learn with AI.</div>
+        <p style="font-size:0.9rem;color:rgba(250,250,246,0.65);line-height:1.7;margin-bottom:20px;">Before you learn a specific skill, you need to know how to learn. This bootcamp teaches you to use AI as a learning partner, productivity assistant, research companion, and creative collaborator — so that everything you learn after this, you learn faster and better.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px;">
+          <div style="display:flex;gap:10px;font-size:0.84rem;color:rgba(250,250,246,0.7);align-items:baseline;"><span style="color:var(--gold);font-family:var(--mono);">→</span><span>Understand AI fundamentals and use tools confidently</span></div>
+          <div style="display:flex;gap:10px;font-size:0.84rem;color:rgba(250,250,246,0.7);align-items:baseline;"><span style="color:var(--gold);font-family:var(--mono);">→</span><span>Write effective prompts that get real results</span></div>
+          <div style="display:flex;gap:10px;font-size:0.84rem;color:rgba(250,250,246,0.7);align-items:baseline;"><span style="color:var(--gold);font-family:var(--mono);">→</span><span>Use AI to learn any new skill faster</span></div>
+          <div style="display:flex;gap:10px;font-size:0.84rem;color:rgba(250,250,246,0.7);align-items:baseline;"><span style="color:var(--gold);font-family:var(--mono);">→</span><span>Build a personal AI-assisted learning workflow</span></div>
+          <div style="display:flex;gap:10px;font-size:0.84rem;color:rgba(250,250,246,0.7);align-items:baseline;"><span style="color:var(--gold);font-family:var(--mono);">→</span><span>Think creatively and solve problems with AI</span></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;">
+          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;border:1px solid rgba(200,147,43,0.4);padding:5px 12px;color:var(--gold);">FREE</span>
+          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;border:1px solid rgba(200,147,43,0.4);padding:5px 12px;color:var(--gold);">3 EVENINGS</span>
+          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;border:1px solid rgba(200,147,43,0.4);padding:5px 12px;color:var(--gold);">7PM DAILY</span>
+          <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;border:1px solid rgba(200,147,43,0.4);padding:5px 12px;color:var(--gold);">ONLINE</span>
+        </div>
+        <a href="#register" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--ink);padding:13px 22px;font-family:var(--sans);font-weight:700;font-size:0.88rem;">Register Free →</a>
+      </div>
+      <div style="background:rgba(250,250,246,0.02);border:1px solid rgba(250,250,246,0.08);padding:40px 36px;">
+        <div style="font-family:var(--mono);font-size:0.62rem;color:rgba(250,250,246,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;">Step 02 — After the Bootcamp</div>
+        <h3 style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--paper);margin-bottom:8px;line-height:1.15;">YRL Learning Tracks</h3>
+        <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(250,250,246,0.45);margin-bottom:20px;">Turn Knowledge into Real-World Skills.</div>
+        <p style="font-size:0.9rem;color:rgba(250,250,246,0.65);line-height:1.7;margin-bottom:20px;">Once you have the AI foundation, you choose a learning track. You won't just watch lessons — you'll work on real projects, receive mentorship, and learn practical skills that solve real problems. AI assists you throughout every track, helping you learn more efficiently and apply knowledge with confidence.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px;">
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Graphic Design</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Software Development</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">AI Applications</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Video Production</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Content Creation</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Marketing</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Entrepreneurship</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Leadership</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Data Analytics</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Branding</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Business Development</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Media Innovation</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">Digital Communication</span>
+          <span style="font-size:0.75rem;background:rgba(250,250,246,0.05);border:1px solid rgba(250,250,246,0.1);padding:5px 11px;color:rgba(250,250,246,0.6);">+ More coming</span>
+        </div>
+        <a href="courses.html" style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(250,250,246,0.25);color:rgba(250,250,246,0.7);padding:13px 22px;font-family:var(--sans);font-weight:600;font-size:0.88rem;">Explore All Learning Tracks →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:88px 0;background:var(--paper-dim);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="eyebrow" style="justify-content:center;">Our Learning Philosophy</div>
+      <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.01em;margin-bottom:14px;">Learning should lead to impact. Always.</h2>
+      <p style="opacity:0.68;max-width:52ch;margin:0 auto;">Every learner follows the same progression — from acquiring knowledge to creating genuine value for the people around them.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);">
+      <div style="padding:36px 28px;border-right:1px solid var(--line);">
+        <div style="font-family:var(--mono);font-size:0.6rem;color:var(--gold-deep);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.1em;">01</div>
+        <div style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--ink);margin-bottom:10px;">Learn</div>
+        <p style="font-size:0.86rem;opacity:0.65;line-height:1.6;">Acquire the principles, tools, and mindset through structured, AI-assisted learning paths designed for the real world.</p>
+      </div>
+      <div style="padding:36px 28px;border-right:1px solid var(--line);">
+        <div style="font-family:var(--mono);font-size:0.6rem;color:var(--gold-deep);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.1em;">02</div>
+        <div style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--ink);margin-bottom:10px;">Build</div>
+        <p style="font-size:0.86rem;opacity:0.65;line-height:1.6;">Apply what you learn through real projects, hands-on challenges, and practical exercises that produce actual output.</p>
+      </div>
+      <div style="padding:36px 28px;border-right:1px solid var(--line);">
+        <div style="font-family:var(--mono);font-size:0.6rem;color:var(--gold-deep);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.1em;">03</div>
+        <div style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--ink);margin-bottom:10px;">Solve</div>
+        <p style="font-size:0.86rem;opacity:0.65;line-height:1.6;">Use your skills to identify and solve real problems — in your work, your business, your community, and your ministry.</p>
+      </div>
+      <div style="padding:36px 28px;">
+        <div style="font-family:var(--mono);font-size:0.6rem;color:var(--gold-deep);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.1em;">04</div>
+        <div style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--ink);margin-bottom:10px;">Serve</div>
+        <p style="font-size:0.86rem;opacity:0.65;line-height:1.6;">Put your knowledge to work for people, organisations, and communities — creating lasting value beyond yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="system-section" id="how-it-works">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why we are different</div>
+      <h2>Most platforms deliver information. We develop capable people.</h2>
+      <p>Our goal is not only to teach you new skills — it is to help you become a lifelong learner who keeps growing as technology evolves.</p>
+    </div>
+    <div class="system-grid">
+      <div class="system-card">
+        <span class="system-num">01 · Daily Check-ins</span>
+        <h4>We check on you every day.</h4>
+        <p>Every student completes a short daily check-in. Nobody disappears unnoticed. Nobody gets stuck alone in silence.</p>
+      </div>
+      <div class="system-card">
+        <span class="system-num">02 · Peer Learning Groups</span>
+        <h4>5–8 people on your exact same path.</h4>
+        <p>You are placed in a small group learning the same skill at the same time. You help each other and celebrate progress together.</p>
+      </div>
+      <div class="system-card">
+        <span class="system-num">03 · Personal Mentorship</span>
+        <h4>A mentor who follows up when you go quiet.</h4>
+        <p>Matthew and our mentors monitor every group. If someone goes quiet, we follow up personally. Nobody gets left behind.</p>
+      </div>
+      <div class="system-card">
+        <span class="system-num">04 · Public Accountability</span>
+        <h4>Document your journey. Share it publicly.</h4>
+        <p>Students document their learning and share it on social media. When your progress is public, quitting has a cost.</p>
+      </div>
+      <div class="system-card">
+        <span class="system-num">05 · Live Webinars</span>
+        <h4>Regular sessions to reinforce your learning.</h4>
+        <p>Live webinars go deeper than self-paced materials, answer real questions, and keep the community's energy alive.</p>
+      </div>
+      <div class="system-card">
+        <span class="system-num">06 · Real Projects</span>
+        <h4>You build things. Not just watch things.</h4>
+        <p>Every learning track includes real projects — tangible outputs you can show, use, and build on. Learning that produces nothing changes nothing.</p>
+      </div>
+    </div>
+    <div class="system-statement">
+      <div class="ss-left">You are not paying for content.<br>You are paying for <em>transformation.</em></div>
+      <div class="ss-right">The learning resources we use are the best free materials on the internet. What you cannot find anywhere else is a system that walks alongside you every single day — daily check-ins, peer accountability, personal mentorship, live webinars, and real projects — until you finish, apply what you learned, and create something real with it.</div>
     </div>
   </div>
 </section>
@@ -606,13 +767,13 @@
   <div class="wrap">
     <div class="mv-col">
       <span class="tag">Our mission</span>
-      <h3>Equip. Inspire. Lead.</h3>
-      <p>To equip young people with practical technology skills, inspire innovation, cultivate ethical leadership, and build a generation that uses technology to solve real-world problems while glorifying God through excellence.</p>
+      <h3>Equip. Inspire. Impact.</h3>
+      <p>To equip learners with practical knowledge, mentorship, and innovation-driven education that transforms ideas into solutions and potential into lasting impact.</p>
     </div>
     <div class="mv-col">
       <span class="tag">Our vision</span>
-      <h3>Africa's leading Christian innovation hub.</h3>
-      <p>Raising thousands of innovators, software engineers, AI specialists, designers, entrepreneurs, and technology leaders who shape the future with excellence, integrity, and purpose.</p>
+      <h3>Africa's leading innovation and learning platform.</h3>
+      <p>Empowering individuals to solve meaningful problems through practical skills, responsible AI, and continuous learning — raising a generation of innovators, creators, and problem solvers.</p>
     </div>
   </div>
 </section>
@@ -639,9 +800,9 @@
 
 <section class="philosophy">
   <div class="wrap">
-    <div class="eyebrow">Our philosophy</div>
-    <h2>We don't simply teach technology. <strong>We develop builders.</strong></h2>
-    <p>Every skill we teach is connected to solving meaningful problems, creating innovative products, improving communities, and preparing people for the future of work. Our focus is not just knowledge — it's innovation, execution, and impact.</p>
+    <div class="eyebrow" style="justify-content:center;color:var(--gold);">Our philosophy</div>
+    <h2>We don't just teach people what to learn. <strong>We teach them how to learn, how to think, and how to solve problems in an AI-powered world.</strong></h2>
+    <p>Our programs combine AI-assisted learning, practical projects, mentorship, and accountability to develop people who keep growing long after their program has ended — because they know how to learn anything.</p>
   </div>
 </section>
 
@@ -667,8 +828,8 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Curriculum</div>
-      <h2>Innovation tracks</h2>
-      <p>Five tracks covering the skills shaping today's technology industry. Tap a track to see what's inside.</p>
+      <h2>Learning tracks</h2>
+      <p>Eight tracks covering the practical skills you need to learn, build, solve, and serve. Tap any track to see what's inside. More tracks are added as we grow.</p>
     </div>
     <div class="tracks">
       <div class="track open">
@@ -1112,11 +1273,12 @@
 <section class="final-cta">
   <div class="wrap">
     <div class="eyebrow" style="justify-content:center;">Ready when you are</div>
-    <h2>Ready to build the future?</h2>
-    <p>Join a growing innovation ecosystem where learning leads to building, collaboration sparks creativity, and technology becomes a force for meaningful impact.</p>
+    <h2>Ready to become someone who builds, solves, and serves?</h2>
+    <p>Start with the AI Possibilities Bootcamp — free, practical, and the foundation for everything that follows. Learn how to learn with AI, then choose your path. We'll walk with you every step of the way.</p>
+    <p>Start with the free AI Possibilities Bootcamp. Build your foundation. Then choose a learning track, get mentored, work on real projects, and create something that matters.</p>
     <div class="cta-row">
-      <a href="#register" class="btn btn-gold">Join YRL Innovation Lab</a>
-      <a href="#register" class="btn btn-outline">Register for AI Possibilities Bootcamp</a>
+      <a href="#register" class="btn btn-gold">Start with the Free Bootcamp</a>
+      <a href="#how-it-works" class="btn btn-outline">See How the System Works</a>
     </div>
   </div>
 </section>
@@ -1141,7 +1303,7 @@
     <div class="fgrid">
       <div>
         <div class="fbrand">YRL Innovation Lab</div>
-        <p class="fblurb">Innovating with Purpose. Building for Impact. Building innovators who create solutions that matter.</p>
+        <p class="fblurb">Innovating with Purpose. Building for Impact. We don't just teach people what to learn — we teach them how to learn, how to think, and how to solve problems in an AI-powered world.</p>
       </div>
       <div class="fcol">
         <h5>Explore</h5>
