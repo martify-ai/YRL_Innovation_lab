@@ -475,6 +475,10 @@
     .check-grid{grid-template-columns:1fr 1fr;}
     footer .fgrid{grid-template-columns:1fr 1fr;}
     .eco-grid{grid-template-columns:1fr;}
+    .system-grid{grid-template-columns:repeat(2,1fr);}
+    .system-statement{grid-template-columns:1fr;}
+    .journey-grid{grid-template-columns:1fr !important;}
+    .lbss-grid{grid-template-columns:1fr 1fr !important;}
   }
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
     outline:2px solid var(--gold-deep); outline-offset:2px;
@@ -569,6 +573,147 @@
     .pricing-card{border-right:none;border-bottom:1px solid var(--line);}
     .pricing-card:last-child{border-bottom:none;}
   }
+
+  /* ── COMPREHENSIVE MOBILE FIXES (max-width: 768px) ── */
+  @media(max-width:768px){
+
+    /* General */
+    .wrap{padding:0 18px;}
+    section{padding:56px 0;}
+
+    /* Hero */
+    .hero{padding:56px 0 40px;}
+    .hero h1{font-size:clamp(2rem,8vw,2.8rem);}
+    .hero .sub{font-size:0.95rem;}
+    .cta-row{flex-direction:column;}
+    .cta-row .btn{text-align:center;justify-content:center;}
+    .hero-strip{grid-template-columns:1fr 1fr;gap:0;}
+    .hero-strip div{padding:16px 12px;}
+    .hero-strip .num{font-size:1.2rem;}
+
+    /* Banner */
+    .banner .wrap{flex-direction:column;gap:12px;text-align:center;}
+
+    /* Journey section — Step 1 & Step 2 */
+    [id="journey"] .wrap > div[style*="grid-template-columns:1fr 1fr"]{
+      grid-template-columns:1fr !important;
+    }
+
+    /* Learn Build Solve Serve */
+    [style*="grid-template-columns:repeat(4,1fr)"]{
+      grid-template-columns:1fr 1fr !important;
+    }
+    [style*="grid-template-columns:repeat(4,1fr)"] > div{
+      border-right:none !important;
+      border-bottom:1px solid var(--line);
+    }
+
+    /* System section */
+    .system-grid{grid-template-columns:1fr !important;}
+    .system-statement{grid-template-columns:1fr !important;padding:24px;}
+    .system-statement .ss-left{font-size:1.2rem;}
+
+    /* Featured program */
+    .program-card{grid-template-columns:1fr !important;}
+    .program-main{border-right:none !important;border-bottom:1px solid var(--line);padding:28px 22px;}
+    .program-side{padding:28px 22px;}
+    .program-list{grid-template-columns:1fr;}
+
+    /* Pricing */
+    .pricing-grid{grid-template-columns:1fr !important;}
+    .pricing-card{border-right:none;border-bottom:1px solid var(--line);}
+
+    /* What we do */
+    .dowhat-grid{grid-template-columns:1fr !important;}
+    .dowhat-card{border-right:none;}
+
+    /* Values */
+    .values-grid{grid-template-columns:1fr 1fr !important;}
+
+    /* Tracks accordion */
+    .track-head .tc{display:none;}
+
+    /* Why join */
+    .why-grid{grid-template-columns:1fr !important;}
+    .why-item:nth-child(odd){padding-right:0 !important;border-right:none !important;}
+    .why-item:nth-child(even){padding-left:0 !important;}
+
+    /* Founder */
+    .founder .wrap{grid-template-columns:1fr !important;}
+    .founder-photo{max-width:200px;aspect-ratio:1/1;}
+
+    /* Roadmap */
+    .road-line{display:none;}
+
+    /* Registration */
+    .reg-grid{grid-template-columns:1fr !important;}
+    .reg-card{padding:24px 18px;}
+    .check-grid{grid-template-columns:1fr !important;}
+    .radio-row{flex-direction:column;}
+
+    /* Mission/Vision */
+    .mv .wrap{grid-template-columns:1fr !important;}
+    .mv-col:first-child{border-right:none !important;border-bottom:1px solid rgba(250,250,246,0.14);}
+    .mv-col{padding:36px 24px;}
+
+    /* Ecosystem */
+    .eco-grid{grid-template-columns:1fr !important;}
+
+    /* Footer */
+    footer .fgrid{grid-template-columns:1fr !important;}
+
+    /* Popup */
+    .popup-card{padding:32px 22px 28px;}
+    .popup-card h2{font-size:1.4rem;}
+
+    /* Journey two-col inline styles */
+    [id="journey"] [style*="grid-template-columns:1fr 1fr"]{
+      display:flex !important;
+      flex-direction:column !important;
+    }
+
+    /* Who can join */
+    .who-grid{grid-template-columns:1fr 1fr !important;}
+
+    /* Stats row in pricing */
+    .stats-row{flex-direction:column;}
+    .stat{border-right:none;border-bottom:1px solid var(--line);}
+    .stat:last-child{border-bottom:none;}
+
+    /* Success screen */
+    .success-screen{padding:32px 16px;}
+    .wa-btn{flex-direction:column;text-align:center;gap:6px;}
+
+    /* Final CTA */
+    .final-cta .wrap{max-width:100%;}
+    .final-cta .cta-row{flex-direction:column;}
+    .final-cta .cta-row .btn{justify-content:center;}
+  }
+
+  /* Extra small screens */
+  @media(max-width:420px){
+    .hero h1{font-size:1.9rem;}
+    .hero-strip{grid-template-columns:1fr 1fr;}
+    .values-grid{grid-template-columns:1fr !important;}
+    .who-grid{grid-template-columns:1fr !important;}
+    .check-grid{grid-template-columns:1fr !important;}
+    .hero-badge{font-size:0.62rem;padding:6px 10px;}
+  }
+
+  /* ── TARGETED MOBILE CLASSES ── */
+  @media(max-width:768px){
+    .journey-grid{grid-template-columns:1fr !important;background:transparent !important;}
+    .journey-grid > div{margin-bottom:1px;}
+    .lbss-grid{grid-template-columns:1fr 1fr !important;}
+    .lbss-grid > div{border-right:none !important;border-bottom:1px solid var(--line) !important;}
+    .whatdo-grid{grid-template-columns:1fr 1fr !important;}
+    .whatdo-grid > div{border-right:1px solid rgba(20,19,15,0.08);}
+    .whatdo-grid > div:nth-child(2n){border-right:none;}
+  }
+  @media(max-width:420px){
+    .lbss-grid{grid-template-columns:1fr !important;}
+    .whatdo-grid{grid-template-columns:1fr !important;}
+  }
 </style>
 </head>
 <body>
@@ -637,7 +782,7 @@
       <h2 style="color:var(--paper);">Two steps. One complete transformation.</h2>
       <p style="color:rgba(250,250,246,0.6);">Every YRL learner follows the same path — starting with the AI Possibilities Bootcamp as the foundation, then moving into their chosen learning track with full mentorship and accountability.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(250,250,246,0.08);margin-top:48px;">
+    <div class="journey-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(250,250,246,0.08);margin-top:48px;">
       <div style="background:var(--ink);border:1px solid rgba(250,250,246,0.08);padding:40px 36px;">
         <div style="font-family:var(--mono);font-size:0.62rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;">Step 01 — Start Here · Free</div>
         <h3 style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--paper);margin-bottom:8px;line-height:1.15;">AI Possibilities Bootcamp</h3>
@@ -692,7 +837,7 @@
       <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.01em;margin-bottom:14px;">Learning should lead to impact. Always.</h2>
       <p style="opacity:0.68;max-width:52ch;margin:0 auto;">Every learner follows the same progression — from acquiring knowledge to creating genuine value for the people around them.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);">
+    <div class="lbss-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);">
       <div style="padding:36px 28px;border-right:1px solid var(--line);">
         <div style="font-family:var(--mono);font-size:0.6rem;color:var(--gold-deep);margin-bottom:16px;text-transform:uppercase;letter-spacing:0.1em;">01</div>
         <div style="font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--ink);margin-bottom:10px;">Learn</div>
@@ -942,7 +1087,7 @@
       <h2>AI Possibilities Bootcamp</h2>
       <p>Learn how artificial intelligence can transform the way you work, create, build, and solve problems — in three focused days.</p>
     </div>
-    <div class="program-card">
+    <div class="program-card mobile-stack">
       <div class="program-main">
         <span class="badge">FOUNDING COHORT · FREE</span>
         <h3>From curious to capable, in 3 days.</h3>
